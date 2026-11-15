@@ -86,7 +86,7 @@ describe('parseExcludedStatus', () => {
   it('treats missing, zero and junk as unset', () => {
     expect(parseExcludedStatus(null)).toBeUndefined();
     expect(parseExcludedStatus('')).toBeUndefined();
-    expect(parseExcludedStatus('0')).toBeUndefined();
+    expect(parseExcludedStatus('0')).toBe(0);
     expect(parseExcludedStatus('1024')).toBeUndefined();
     expect(parseExcludedStatus('-4')).toBeUndefined();
     expect(parseExcludedStatus('4.5')).toBeUndefined();
@@ -108,7 +108,7 @@ describe('excludedStatuses / toggleExcludedStatus', () => {
     expect(toggleExcludedStatus(4, OrderStatus.NoShow, true)).toBe('132');
     expect(toggleExcludedStatus(4, OrderStatus.Cancel, true)).toBe('4');
     expect(toggleExcludedStatus(132, OrderStatus.Cancel, false)).toBe('128');
-    expect(toggleExcludedStatus(4, OrderStatus.Cancel, false)).toBeNull();
+    expect(toggleExcludedStatus(4, OrderStatus.Cancel, false)).toBe('0');
   });
 });
 

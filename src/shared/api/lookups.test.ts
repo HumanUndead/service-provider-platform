@@ -63,4 +63,34 @@ describe('lookups (lookup-endpoints reference)', () => {
     expect(priceFor(pricing, 2)).toBe(150);
     expect(priceFor([pricing[0]], 2)).toBe(90);
   });
+
+  it('takes the newest (highest id) of several B2C rows', () => {
+    const pricing = [
+      {
+        id: 3,
+        serviceProviderClassificationId: 2,
+        price: 100,
+        isB2CPrice: true,
+      },
+      {
+        id: 7,
+        serviceProviderClassificationId: 2,
+        price: 140,
+        isB2CPrice: true,
+      },
+      {
+        id: 5,
+        serviceProviderClassificationId: 2,
+        price: 120,
+        isB2CPrice: true,
+      },
+      {
+        id: 9,
+        serviceProviderClassificationId: 1,
+        price: 999,
+        isB2CPrice: true,
+      },
+    ];
+    expect(priceFor(pricing, 2)).toBe(140);
+  });
 });

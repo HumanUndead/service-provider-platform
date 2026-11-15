@@ -80,27 +80,29 @@ export const ORDER_STATUSES: readonly OrderStatus[] =
 const ALL_STATUS_BITS = combineFlags(ORDER_STATUSES);
 
 /**
- * `?excl=` → the sum of the excluded status bits, keeping only known bits;
- * missing, junk or empty (0) → `undefined`, so the API default applies.
+ * `?excl=` → the sum of the excluded status bits, keeping only known bits.
+ * `0` means "exclude nothing" (every status, Cancel and NoShow included);
+ * missing or junk → `undefined`, so the provider default applies.
  */
 export function parseExcludedStatus(raw: string | null): number | undefined {
   if (!raw || !/^\d+$/.test(raw)) return undefined;
+  if (Number(raw) === 0) return 0;
   const mask = Number(raw) & ALL_STATUS_BITS;
   return mask === 0 ? undefined : mask;
 }
 
 /** The statuses set in an excluded-status mask, in bit order. */
 export const excludedStatuses = (mask: number | undefined): OrderStatus[] =>
-  mask === undefined ? [] : splitFlags(mask, ORDER_STATUSES);
+  !mask ? [] : splitFlags(mask, ORDER_STATUSES);
 
-/** Adds or removes one status; an empty result → `null` (drop the param). */
+/** Adds or removes one status; an empty result → `'0'` (exclude nothing). */
 export function toggleExcludedStatus(
   mask: number | undefined,
   status: OrderStatus,
   on: boolean,
 ): string | null {
   const next = on ? (mask ?? 0) | status : (mask ?? 0) & ~status;
-  return next === 0 ? null : String(next);
+  return String(next);
 }
 
 /** `?from=` / `?to=` hold `yyyy-MM-dd`; anything else is ignored. */
