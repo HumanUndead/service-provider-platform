@@ -13,9 +13,9 @@
 //   ZOHO_API_DOMAIN       (default https://sprintsapi.zoho.sa/zsapi)
 //   ZOHO_TEAM_ID          (default 150001150029)
 //   ZOHO_PROJECT_ID       (default 1335000000176026)
-//   ZOHO_KANBAN_SPRINT_ID (required)
-//   ZOHO_BACKLOG_SPRINT_ID(required)
-//   ZOHO_TICKET_PREFIX    (required)
+//   ZOHO_KANBAN_SPRINT_ID (default 1335000000176029)
+//   ZOHO_BACKLOG_SPRINT_ID(default 1335000000176028)
+//   ZOHO_TICKET_PREFIX    (default SPP)
 //
 // The read path (findItemByNumber) uses the endpoint shape confirmed against
 // a real open-source Zoho Sprints client (github.com/AutoIDM/tap-zohosprints):
@@ -34,25 +34,14 @@
 
 const env = process.env;
 
-// Project-specific values have no defaults: set them as GitHub repo variables
-// (Settings → Secrets and variables → Actions → Variables) or env vars.
-const REQUIRED = ['ZOHO_KANBAN_SPRINT_ID', 'ZOHO_TICKET_PREFIX'];
-const missing = REQUIRED.filter((k) => !env[k]);
-if (missing.length) {
-  console.log(
-    `Zoho sync not configured (missing ${missing.join(', ')}) - skipping.`,
-  );
-  process.exit(0);
-}
-
 const ACCOUNTS_DOMAIN = env.ZOHO_ACCOUNTS_DOMAIN || 'https://accounts.zoho.sa';
 const API_DOMAIN = env.ZOHO_API_DOMAIN || 'https://sprintsapi.zoho.sa/zsapi';
 const TEAM_ID = env.ZOHO_TEAM_ID || '150001150029';
 const PROJECT_ID = env.ZOHO_PROJECT_ID || '1335000000176026';
-const KANBAN_SPRINT_ID = env.ZOHO_KANBAN_SPRINT_ID || '';
-const BACKLOG_SPRINT_ID = env.ZOHO_BACKLOG_SPRINT_ID || '';
+const KANBAN_SPRINT_ID = env.ZOHO_KANBAN_SPRINT_ID || '1335000000176029';
+const BACKLOG_SPRINT_ID = env.ZOHO_BACKLOG_SPRINT_ID || '1335000000176028';
 // Zoho Sprints item prefix of this project; branches are named SPP-I<n>-...
-const TICKET_PREFIX = env.ZOHO_TICKET_PREFIX || '';
+const TICKET_PREFIX = env.ZOHO_TICKET_PREFIX || 'SPP';
 
 // The Service Provider Portal board's four statuses. To do, In progress and Ready For Testing
 // are verified on this board (Ready For Testing sampled from I90, 2026-11-04);
