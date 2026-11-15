@@ -2,19 +2,48 @@
 
 Status of the Service Provider portal against its contract,
 `SERVICE_PROVIDER_A_TO_Z.md` (the complete reference: Service Provider module,
-authentication, lookups and the answered questions). Last updated 2026-11-12.
+authentication, lookups and the answered questions). Last updated 2026-11-15.
 
-**Nothing has been run against the real backend yet.** What exists is checked
-by type-check, lint, unit tests (158) and headless-browser smoke tests of every
-screen with stubbed API responses (English and Arabic).
+**Nothing has been run against the real backend yet.** The portal is checked
+by type-check, lint, unit tests and headless-browser smoke tests of every
+screen with stubbed API responses (English and Arabic). No call has been made
+as a signed-in user.
+
+---
+
+## 0. Check against the staging Swagger (2026-11-15)
+
+The backend team reported every open item in §4 done. We checked the portal
+against the staging Swagger documents (`Provider`, `Reservation`,
+`Authenticate`, `General`, `Service`, `Vaccine`, `Dashboard`, `Company`,
+`Admin`) on 2026-11-15.
+
+**What Swagger can and cannot confirm.** Swagger lists the endpoints, their
+query parameters and their request bodies, but **no response bodies**. So
+anything that depends on what an endpoint returns, or on how the server
+behaves, is still unconfirmed (see §4 "Still needs an answer").
+
+**Result.** Every endpoint the portal calls exists, except the
+`MultipleDelete` endpoints, which are gone from the whole `Provider` service.
+Several query parameters the portal sent had the wrong name and were being
+ignored. The portal was changed as follows:
+
+| Area                                             | Before                                                                                      | Now                                                                               |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Branch bulk delete                               | `DELETE Provider/ServiceProviderBranch/MultipleDelete` (no longer exists)                   | `DELETE Provider/ServiceProviderBranch/Delete?Id=…` once per branch, never forced |
+| Provider / category / classification bulk delete | `…/MultipleDelete` (no longer exist; never used by a screen)                                | Removed from the portal                                                           |
+| Reservations, branch filter                      | `serviceProviderBranchId=12`; switched to `Reservation/List`, which has no `ExcludedStatus` | Always `Reservation/ShortcutList` with `ServiceProviderBranchIds=12`              |
+| Claimable orders, branch filter                  | `serviceProviderBranchId=12` on `Reservation/List`                                          | `ServiceProviderBranchIds=12`                                                     |
+| Order vaccines, slot times                       | `ServiceProviderBranchVaccine/List?VaccineId=…` (ignored: every vaccine's times came back)  | `VaccineIds=…`                                                                    |
+| Team import                                      | `ServiceProviderUserExport` with `ServiceProviderBranchId` = provider id                    | `ServiceProviderId` = provider id (the field the backend now declares)            |
 
 ---
 
 ## 1. Where things stand
 
 The provider flow of the A-to-Z is complete: every endpoint a provider user
-needs has its API code and its screen. What is left is backend confirmation,
-two backend improvements, and product calls on admin features.
+needs has its API code and its screen. What is left is backend confirmation
+(§4) and product calls on admin features (§2).
 
 | Area                                                           | Screen                                        |
 | -------------------------------------------------------------- | --------------------------------------------- |
@@ -43,7 +72,7 @@ screens only if admins will use this app:
 
 - Creating providers (`create:service-provider`) and choosing which provider
   to open (`?provider=`).
-- Categories, classifications (`settings/api/taxonomy.ts`), FAQ editing.
+- Categories, classifications, FAQ editing.
 - The service catalogue (A-Z §30). The Services menu entry is removed and
   `/services` redirects to Branches, where each branch's offering is managed.
 - Company / company-branch / company-package filters on orders — shown only
@@ -59,52 +88,84 @@ screens only if admins will use this app:
     says only the first N are shown.
   - A provider user cannot ask to "exclude nothing": with no excluded
     statuses ticked, the API default (Cancel + NoShow) applies (§13.2).
+    See backend question B4.
 - **Claims**
   - No patient (`OwnerId`) filter — there is no patient lookup.
 - **Ledgers**
   - A ledger opened by link that is not on the current list page is looked up
-    in `LedgerList` (filtered by provider and the link's `from` / `to`, plus an
-    `Id` the backend may ignore). If it is still not found, status, period,
-    totals, the Paid switch and the admin-note editor are hidden. The real fix
-    is backend item 8 below.
+    in `LedgerList` (filtered by provider and the link's `from` / `to`).
+    `LedgerList` has no `Id` filter, so the lookup can miss; then status,
+    period, totals, the Paid switch and the admin-note editor are hidden.
+    The fix is backend question B1.
 - **Branches**
-  - Bulk delete has no "delete anyway" step: if the backend answers `-1`
-    (related data) the user is asked to delete those branches one by one.
+  - Bulk delete has no "delete anyway" step: branches the backend refuses
+    with `-1` (related data) stay selected and the user is asked to delete
+    them one by one.
   - Branch-service editing locks the service / group / vaccine itself.
 - **Check-in camera scanning** uses the browser's built-in `BarcodeDetector`
   (Chrome, Edge, Android). Where it is missing (Firefox, iOS Safari) only
   pasting a link works; supporting those needs a scanner library. Not yet
   tried on a real device.
-- **Sidebar branch switcher** does nothing yet — what it should switch is a
-  product decision (all screens filtered to one branch?).
+- **Sidebar branch switcher** — what it should switch is a product decision
+  (all screens filtered to one branch?).
 - **No end-to-end tests against a running backend.**
 
 ---
 
-## 4. Still open with the backend team
+## 4. Backend items
 
-1. **Service-group default price** — the portal prefills from the B2C row
-   (`isB2CPrice: true`). Confirm.
-2. **Branch-service update, single service** — the portal sends the link-row
-   id as `Services[0].id` (matches the schema). Confirm once.
-3. **Provider users in `CompanyId`** — the portal sends the provider id there,
-   as the working client does. Confirm.
-4. **Login username matching** — login only trims. Are usernames
-   case-insensitive?
-5. **`PageSize=1000` on lookups** — accepted on branch slots; not confirmed
-   for the lookup lists.
-6. **Tags tab permission** — no tags flag exists; the portal uses
-   `view:` / `update:service-provider-settings`. Decide.
-7. **Team import id** — `ServiceProviderUserExport` (a bulk _import_) has a
-   `ServiceProviderBranchId` field, but the working client fills it with the
-   provider id on this screen; the portal does the same. Which id is it?
-8. **`LedgerDetailsGetById`** — please add `status`, `claimedFrom`,
-   `claimedTo`, `total`, `tax` and `adminNote`, so a ledger opened by link
-   always shows them (Blocked Items §3, option 1). Until then: does
-   `LedgerList` honour an `Id` filter?
-9. **Tag list for providers** — the portal sends `ServiceProviderId={own id}`
-   (the working client sent nothing and let the token decide). Confirm the
-   backend accepts it.
+### Confirmed from Swagger — closed
+
+| #   | Item                                  | What Swagger shows                                                                                         |
+| --- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 2   | Branch-service update, single service | `Services[].id` + `serviceProviderBranchServiceId` — the portal sends the link-row id as `Services[0].id`. |
+| 5   | `PageSize=1000` on lookups            | Every lookup list the portal uses declares `pageSize`.                                                     |
+| 7   | Team import id                        | `ServiceProviderUserExport` takes `ServiceProviderId` + `File`. The portal sends the provider id.          |
+| 9   | Tag list for providers                | `General/Tags/List` takes `ServiceProviderId`. The portal sends the user's own provider id.                |
+
+### Still needs an answer
+
+**Security (please fix first)**
+
+- **S1. Ledger endpoints answer without a token.** On staging,
+  `GET Reservation/Reservation/LedgerGetById?Id=…` and
+  `GET Reservation/Reservation/LedgerDetailsGetById?Id=…` return 600
+  "Ledgers Not Found" to a request with **no** `Authorization` header, where
+  every other endpoint returns 401. An existing id would presumably return
+  the ledger to anyone. Please require auth (and provider scoping) on both.
+
+**Questions**
+
+- **B1. `LedgerGetById` (old item 8).** It is new and its response is not in
+  Swagger. Does it return `status`, `claimedFrom`, `claimedTo`, `total`,
+  `tax` and `adminNote` (the same fields as a `LedgerList` row)? If yes, the
+  portal will use it for a ledger opened by link. Please share a sample
+  response.
+- **B2. `MultipleDelete` removed.** All `MultipleDelete` endpoints are gone
+  from the `Provider` service (provider, branch, branch service, category,
+  classification). Intentional? The portal now deletes branches one call at
+  a time.
+- **B3. `ShortcutList` branch filter.** `ServiceProviderBranchIds` now appears
+  on `ShortcutList`. Confirm it filters provider users' orders (the portal
+  relies on it, together with `ExcludedStatus`).
+- **B4. "Exclude nothing" on `ShortcutList`.** With `ExcludedStatus` absent
+  (or 0?) the default Cancel + NoShow exclusion applies. How can a provider
+  ask for every status? And what does the new `Statuses` parameter do?
+- **B5. Service-group default price (old item 1).** The portal prefills from
+  the row with `isB2CPrice: true`. Confirm that is the right row.
+- **B6. Provider users in `CompanyId` (old item 3).** `User/Create` / `Update`
+  still have only `CompanyId`; the portal sends the provider id there, as the
+  working client does. Confirm.
+- **B7. Login username matching (old item 4).** Login only trims the
+  username. Are usernames case-insensitive on the server?
+- **B8. Tags tab permission (old item 6).** No tags permission flag exists;
+  the portal uses `view:` / `update:service-provider-settings`. Should there
+  be a dedicated flag?
+- **B9. `ClaimReservations` context.** The portal sends the list context
+  (`ServiceProviderId` or `ServiceProviderBranchId`) as query parameters, as
+  the working client does, but Swagger declares none. Is it ignored?
+- **B10. Response schemas in Swagger.** Most endpoints document no response
+  body. Adding them would let us check items like B1 and B5 ourselves.
 
 ---
 
@@ -124,7 +185,8 @@ product. Section numbers are the A-to-Z's.
 | §10.5, §11.5            | Price ≥ cost only checked on create                                                      | Checked on create and update                                                                                                                                                        | §18.4                                |
 | §6.5                    | Category not validated on create                                                         | Required on create too                                                                                                                                                              | §18.5                                |
 | §10.5                   | `Services[0].id = String(x \|\| null)`, `…ServiceProviderServiceProviderBranchServiceId` | `0` instead of `"null"`; `serviceProviderBranchServiceId`; link-row id as `Services[0].id`                                                                                          | §18.7, §18.8, §31.2                  |
-| §17.2                   | Tags tab gated by `view:service-provider-orders`                                         | Gated by `view:` / `update:service-provider-settings` (open item 6)                                                                                                                 | §18.10                               |
+| §8.1                    | Branch bulk delete via `MultipleDelete`                                                  | One `Delete` per branch, never forced (`MultipleDelete` no longer exists — B2)                                                                                                      | backend change                       |
+| §17.2                   | Tags tab gated by `view:service-provider-orders`                                         | Gated by `view:` / `update:service-provider-settings` (B8)                                                                                                                          | §18.10                               |
 | §17.2, §24              | FAQs tab gated by company `view:company`                                                 | Shown to every signed-in provider user                                                                                                                                              | §32.1                                |
 | §19.8.1                 | Session expiry = now + 3 days                                                            | The earlier of 3 days and the JWT's `exp`                                                                                                                                           | §19.11.3                             |
 | §19.10, §19.11.4        | Normalise login like forgot-password                                                     | Login only trims (forgot-password trims and lower-cases as typed)                                                                                                                   | §31.6                                |
@@ -132,8 +194,8 @@ product. Section numbers are the A-to-Z's.
 | §19.8.6                 | `/dashboard` landing page, `/error/*` routes                                             | `/dashboard` redirects to `/today`; there are no `/error/*` pages (errors show in place)                                                                                            | naming only                          |
 | §20.1                   | Pickers send no `PageSize`                                                               | `PageSize=1000` on pickers                                                                                                                                                          | §20.1 ("or send a large `PageSize`") |
 | §20.4, §32.2            | Provider tag picker sends no filter                                                      | Sends `ServiceProviderId={own id}`; admins `Type=1`                                                                                                                                 | §32.2                                |
-| §20.6                   | Group default price = first match                                                        | B2C row first, else first match                                                                                                                                                     | §31.1 (stopgap)                      |
-| §13.2, §32.6            | No branch filter on `ShortcutList`                                                       | A branch filter switches the list to `Reservation/List`                                                                                                                             | §32.6                                |
+| §20.6                   | Group default price = first match                                                        | B2C row first, else first match (B5)                                                                                                                                                | §31.1 (stopgap)                      |
+| §13.2, §32.6            | No branch filter on `ShortcutList`                                                       | `ShortcutList` with `ServiceProviderBranchIds` (the backend added it — B3)                                                                                                          | §32.6                                |
 | §9.5, §31.3             | —                                                                                        | Every open weekday needs ≥ 1 time; no "Remove day"                                                                                                                                  | matches §31.3                        |
 | §11.3–11.4              | Add flow sends no `SlotTimeIds`; standalone create needs ≥ 1                             | The add dialog offers the slot times as an optional pick (sent as `SlotTimeIds` when chosen; needs `update:service-provider-branch-vaccine-slots`) — both §11.3 modes in one dialog | §11.3                                |
 | §32.3                   | "Update result" is admin-screen only                                                     | Shown on the order drawer only to Admins or `update:company-update-result` holders                                                                                                  | §32.3                                |

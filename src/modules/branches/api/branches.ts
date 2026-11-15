@@ -4,7 +4,11 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { deleteById, deleteMany, type DeleteParams } from '@/shared/api/delete';
+import {
+  deleteById,
+  HAS_DEPENDENTS,
+  type DeleteParams,
+} from '@/shared/api/delete';
 import { toFormData, type FormValue } from '@/shared/api/form-data';
 import {
   apiDelete,
@@ -153,11 +157,31 @@ export function useDeleteBranch() {
   });
 }
 
+export interface BulkDeleteResult {
+  deleted: number[];
+  /** Refused: related data (`HAS_DEPENDENTS`) or a falsy answer. */
+  blocked: number[];
+}
+
+/**
+ * The backend has no `ServiceProviderBranch/MultipleDelete` any more, so the
+ * selection is deleted one `Delete` call at a time, never forced. Branches
+ * with related data are reported back for the user to delete one by one.
+ */
 export function useDeleteBranches() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (ids: number[]) => deleteMany(BRANCH_PATHS.multipleDelete, ids),
-    onSuccess: () => qc.invalidateQueries({ queryKey: branchKeys.lists() }),
+    mutationFn: async (ids: number[]): Promise<BulkDeleteResult> => {
+      const result: BulkDeleteResult = { deleted: [], blocked: [] };
+      for (const id of ids) {
+        const answer = await deleteById(BRANCH_PATHS.delete, { id });
+        if (answer === HAS_DEPENDENTS || answer === false)
+          result.blocked.push(id);
+        else result.deleted.push(id);
+      }
+      return result;
+    },
+    onSettled: () => qc.invalidateQueries({ queryKey: branchKeys.lists() }),
   });
 }
 

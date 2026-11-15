@@ -4,7 +4,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { deleteById, deleteMany, type DeleteParams } from '@/shared/api/delete';
+import { deleteById, type DeleteParams } from '@/shared/api/delete';
 import type { AttachmentCategory } from '@/shared/api/enums';
 import { toFormData } from '@/shared/api/form-data';
 import {
@@ -116,15 +116,6 @@ export function useDeleteProvider() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (p: DeleteParams) => deleteById(`${BASE}/Delete`, p),
-    onSuccess: () => qc.invalidateQueries({ queryKey: providerKeys.lists() }),
-  });
-}
-
-/** Defined by the backend; the old client never called it. */
-export function useDeleteProviders() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (ids: number[]) => deleteMany(`${BASE}/MultipleDelete`, ids),
     onSuccess: () => qc.invalidateQueries({ queryKey: providerKeys.lists() }),
   });
 }

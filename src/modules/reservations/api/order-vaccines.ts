@@ -44,16 +44,21 @@ export const vaccineSlotTimesQuery = (
         'Provider/ServiceProviderBranchVaccine/List?',
         {
           signal,
-          params: { ServiceProviderBranchId: branchId, VaccineId: vaccineId },
+          params: {
+            ServiceProviderBranchId: branchId,
+            VaccineIds: vaccineId === null ? undefined : [vaccineId],
+          },
         },
       ).then((page) =>
-        (page?.data ?? []).flatMap((v) =>
-          (v.slotTimes ?? []).map((s) => ({
-            value: s.serviceProviderBranchSlotTimeId,
-            from: s.timeFrom,
-            to: s.timeTo,
-          })),
-        ),
+        (page?.data ?? [])
+          .filter((v) => v.vaccineId === vaccineId)
+          .flatMap((v) =>
+            (v.slotTimes ?? []).map((s) => ({
+              value: s.serviceProviderBranchSlotTimeId,
+              from: s.timeFrom,
+              to: s.timeTo,
+            })),
+          ),
       ),
     enabled: vaccineId !== null,
   });

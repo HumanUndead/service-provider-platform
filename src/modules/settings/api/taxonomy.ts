@@ -4,7 +4,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
-import { deleteById, deleteMany, type DeleteParams } from '@/shared/api/delete';
+import { deleteById, type DeleteParams } from '@/shared/api/delete';
 import { LangId } from '@/shared/api/enums';
 import { toFormData, type FormValue } from '@/shared/api/form-data';
 import {
@@ -181,15 +181,6 @@ export function useDeleteTaxonomy(kind: TaxonomyKind) {
   const invalidate = useInvalidate(kind);
   return useMutation({
     mutationFn: (p: DeleteParams) => deleteById(`${BASE[kind]}/Delete`, p),
-    onSuccess: invalidate,
-  });
-}
-
-export function useDeleteTaxonomies(kind: TaxonomyKind) {
-  const invalidate = useInvalidate(kind);
-  return useMutation({
-    mutationFn: (ids: number[]) =>
-      deleteMany(`${BASE[kind]}/MultipleDelete`, ids),
     onSuccess: invalidate,
   });
 }

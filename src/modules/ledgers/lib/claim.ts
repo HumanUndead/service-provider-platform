@@ -45,7 +45,9 @@ export const claimableParams = (
   ServiceProviderId: p.serviceProviderId,
   pageNumber: p.pageNumber,
   pageSize: p.pageSize,
-  serviceProviderBranchId: p.serviceProviderBranchId,
+  ServiceProviderBranchIds: p.serviceProviderBranchId
+    ? [p.serviceProviderBranchId]
+    : undefined,
   ServiceGroupIds: p.serviceGroupIds,
   ServiceIds: p.serviceIds,
   OwnerId: p.ownerId,
