@@ -79,14 +79,19 @@ export const tokenStore = {
     }
     emit();
   },
+  /**
+   * Notifies only when a token was actually cleared: a subscriber that ends
+   * the session (and so clears again) would otherwise recurse forever.
+   */
   clear() {
+    const had = current !== null;
     current = null;
     try {
       localStorage.removeItem(AUTH_STORAGE_KEY);
     } catch {
       // Nothing persisted.
     }
-    emit();
+    if (had) emit();
   },
   subscribe(fn: () => void) {
     listeners.add(fn);
