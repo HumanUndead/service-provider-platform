@@ -1,11 +1,5 @@
 # Zoho Sprints ticket-status sync
 
-> **Setup still needed for this project (Zoho project `1335000000176026`).**
-> Fill the placeholders `<PREFIX>` (item key prefix), `<projNo>` (project number in
-> the Zoho URL), `<KANBAN_SPRINT_ID>`, `<BACKLOG_SPRINT_ID>`, `<ITEM_TYPE_TASK_ID>`
-> and `<PRIORITY_*_ID>` with this project's values. Status, member and user-group
-> IDs are workspace-wide values copied from Marhab — verify them on this board.
-
 `.github/workflows/zoho-ticket-status-sync.yml` runs
 `sync-ticket-status.mjs` on branch pushes and PR events to move a ticket
 forward through the Service Provider Portal board's four statuses: To do -> In progress ->
@@ -19,7 +13,7 @@ In progress.
 
 Ported from `osh-compliance` (project "Mwafq - OSH"), where it is confirmed
 working end-to-end. This copy targets the **Service Provider Portal** project
-(prefix `<PREFIX>`, project #<projNo>, created 2026-11-10).
+(prefix `SPP`, project #13, created 2026-11-12).
 
 ## Live mode (`DRY_RUN` is `"false"`)
 
@@ -36,7 +30,7 @@ status moved. Live mode depends on:
 
    | Status            | statusId           | Confidence                                             |
    | ----------------- | ------------------ | ------------------------------------------------------ |
-   | To do             | `1335000000008495` | unverified for this project                            |
+   | To do             | `1335000000008495` | verified on SPP-I1 (2026-11-15)                        |
    | In progress       | `1335000000008497` | unverified for this project                            |
    | Ready For Testing | `1335000000164071` | unverified for this project                            |
    | Done              | `1335000000008499` | workspace-shared ID — unverified until the first merge |
@@ -135,15 +129,15 @@ credential:
 
 ## What triggers what
 
-| Event                                                        | Target status     |
-| ------------------------------------------------------------ | ----------------- |
-| Push to any branch matching `<PREFIX>-I<n>-...` (not `main`) | In progress       |
-| PR merged into `main`                                        | Ready For Testing |
+| Event                                                   | Target status     |
+| ------------------------------------------------------- | ----------------- |
+| Push to any branch matching `SPP-I<n>-...` (not `main`) | In progress       |
+| PR merged into `main`                                   | Ready For Testing |
 
 Opening a PR changes nothing — the board has no Code Review column, so the
 workflow doesn't listen for it.
 
-The ticket number is parsed from the branch name (`<PREFIX>-I<n>`; override the
+The ticket number is parsed from the branch name (`SPP-I<n>`; override the
 prefix with `ZOHO_TICKET_PREFIX`). If none is found, the run exits cleanly —
 most branches won't have one.
 
@@ -151,6 +145,6 @@ most branches won't have one.
 
 Same ones the `ship` skill documents (`.claude/skills/ship/SKILL.md`):
 teamId `150001150029`, projectId `1335000000176026`, Kanban sprint
-`<KANBAN_SPRINT_ID>`, Backlog sprint `<BACKLOG_SPRINT_ID>`. Each is overridable by
+`1335000000176029`, Backlog sprint `1335000000176028`. Each is overridable by
 env (`ZOHO_TEAM_ID`, `ZOHO_PROJECT_ID`, `ZOHO_KANBAN_SPRINT_ID`,
 `ZOHO_BACKLOG_SPRINT_ID`). Status IDs are in `STATUS_RANK` in the script.
