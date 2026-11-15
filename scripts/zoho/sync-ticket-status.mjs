@@ -51,7 +51,7 @@ const TEAM_ID = env.ZOHO_TEAM_ID || '150001150029';
 const PROJECT_ID = env.ZOHO_PROJECT_ID || '1335000000176026';
 const KANBAN_SPRINT_ID = env.ZOHO_KANBAN_SPRINT_ID || '';
 const BACKLOG_SPRINT_ID = env.ZOHO_BACKLOG_SPRINT_ID || '';
-// Zoho Sprints item prefix of this project; branches are named <PREFIX>-I<n>-...
+// Zoho Sprints item prefix of this project; branches are named SPP-I<n>-...
 const TICKET_PREFIX = env.ZOHO_TICKET_PREFIX || '';
 
 // The Service Provider Portal board's four statuses. To do, In progress and Ready For Testing

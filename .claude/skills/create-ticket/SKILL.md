@@ -4,12 +4,6 @@ description: "Draft a ticket (title + description) for a piece of work — for f
 trigger: /ticket
 ---
 
-> **Setup still needed for this project (Zoho project `1335000000176026`).**
-> Fill the placeholders `<PREFIX>` (item key prefix), `<projNo>` (project number in
-> the Zoho URL), `<KANBAN_SPRINT_ID>`, `<BACKLOG_SPRINT_ID>`, `<ITEM_TYPE_TASK_ID>`
-> and `<PRIORITY_*_ID>` with this project's values. Status, member and user-group
-> IDs are workspace-wide values copied from Marhab — verify them on this board.
-
 # /ticket
 
 Turn a piece of work — planned or already completed in this conversation — into a
@@ -20,7 +14,7 @@ ticket that reads like a spec, not a changelog.
 ```
 /ticket                         # draft AND file a ticket for whatever was just discussed/done
 /ticket <topic or task>         # draft AND file a ticket for a specific topic
-/ticket <ticket-key> <topic>    # use a specific key, e.g. /ticket <PREFIX>-I12 attendance register
+/ticket <ticket-key> <topic>    # use a specific key, e.g. /ticket SPP-I12 attendance register
 /ticket draft <topic>           # draft only — print markdown, do not create the Zoho item
 ```
 
@@ -70,11 +64,11 @@ rephrase it as a present-tense requirement.
 ## Title format
 
 Pattern: `<KEY> <Area> — <imperative summary>` or `<KEY> <imperative summary>`,
-e.g. `<PREFIX>-I12 Attendance — Check trainees in by QR pass`. This project's key
-prefix is **`<PREFIX>`** (Service Provider Portal). For a new ticket with no assigned key
+e.g. `SPP-I12 Attendance — Check trainees in by QR pass`. This project's key
+prefix is **`SPP`** (Service Provider Portal). For a new ticket with no assigned key
 yet, omit the key entirely from the title (just the imperative summary)
 rather than inventing a real-looking ticket number or writing a placeholder
-like `<PREFIX>-I<TBD>` into the actual title — the ticket's own `itemNo`, returned
+like `SPP-I<TBD>` into the actual title — the ticket's own `itemNo`, returned
 by `CreateItem`, is the real key. If the user wants the key visible before
 filing, say so in your reply, not in the title text.
 
@@ -171,34 +165,34 @@ workflow above, then immediately create it as a work item via the connected
 `zoho-sprints` MCP server's `ZohoSprints_CreateItem` tool.
 
 **Known workspace (Service Provider Portal)** — reuse these instead of rediscovering
-them. Derived on 2026-11-10 from `GetProjects` / `GetProjectDetails` /
+them. Derived on 2026-11-15 from `GetProjects` / `GetProjectDetails` /
 `GetProjectPriorities`. Do **not** reuse the sibling "Mwafq - OSH" (`MO`)
 project's IDs — that mismatch fails with "Sprint not available" / "Select a
 valid item type."
 
-| Field           | Value                                                                                                                                                      |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| teamId          | `150001150029`                                                                                                                                             |
-| projectId       | `1335000000176026` (Service Provider Portal, **Kanban** — no real sprints)                                                                                 |
-| sprintId to use | `<KANBAN_SPRINT_ID>` (the project's **Kanban board** — new items should land here; `<BACKLOG_SPRINT_ID>` is the plain Backlog and leaves items un-boarded) |
+| Field           | Value                                                                                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| teamId          | `150001150029`                                                                                                                                        |
+| projectId       | `1335000000176026` (Service Provider Portal, **Kanban** — no real sprints)                                                                            |
+| sprintId to use | `1335000000176029` (the project's **Kanban board** — new items should land here; `1335000000176028` is the plain Backlog and leaves items un-boarded) |
 
 Item type IDs (`projitemtypeid`):
 
-| Name | ID                    | Confidence                                         |
-| ---- | --------------------- | -------------------------------------------------- |
-| Task | `<ITEM_TYPE_TASK_ID>` | verified — <PREFIX>-I1 filed with it on 2026-11-10 |
+| Name | ID                 | Confidence                                |
+| ---- | ------------------ | ----------------------------------------- |
+| Task | `1335000000176048` | verified — read from SPP-I1 on 2026-11-15 |
 
 Other types (e.g. Bug) are unobserved: create one by hand in the Sprints UI,
 read its `projItemTypeId` via `GetItems`/`GetItemDetails`, and add it here.
 
 Priority IDs (`projpriorityid`, verified via `GetProjectPriorities`):
 
-| Name   | ID                     |
-| ------ | ---------------------- |
-| None   | `<PRIORITY_NONE_ID>`   |
-| Low    | `<PRIORITY_LOW_ID>`    |
-| Medium | `<PRIORITY_MEDIUM_ID>` |
-| High   | `<PRIORITY_HIGH_ID>`   |
+| Name   | ID                 |
+| ------ | ------------------ |
+| None   | `1335000000176044` |
+| Low    | `1335000000176045` |
+| Medium | `1335000000176046` |
+| High   | `1335000000176047` |
 
 If a different project is ever targeted, re-derive its IDs via
 `GetProjects` → `GetProjectDetails` → `GetProjectPriorities`, and sample a
@@ -229,7 +223,7 @@ project's item-type IDs (there's no direct "list item types" tool).
    success — don't claim the ticket exists based only on `CreateItem`'s
    return value. Confirm `ownerId` reflects the assignee, not `Unassigned`.
    Report back the item number (e.g. `I12`) and ID, plus the ticket URL
-   `https://sprints.zoho.sa/workspace/mwafqportal#P<projNo>/itemdetails/I<itemNo>`.
+   `https://sprints.zoho.sa/workspace/mwafqportal#P13/itemdetails/I<itemNo>`.
 
 ## User group
 
@@ -255,7 +249,7 @@ rather than failing the whole filing; tagging by hand in the UI takes a few
 seconds.
 
 The script defaults to the Kanban sprint ID, matching where `/ticket` files
-new items. Pass `--sprint <BACKLOG_SPRINT_ID>` for an item still on the plain
+new items. Pass `--sprint 1335000000176028` for an item still on the plain
 Backlog — a mismatched sprint ID in the path returns `7404`.
 
 ## Assignee

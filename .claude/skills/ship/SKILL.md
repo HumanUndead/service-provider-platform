@@ -4,12 +4,6 @@ description: "Check out a new branch for the current changes, commit them, push,
 trigger: /ship
 ---
 
-> **Setup still needed for this project (Zoho project `1335000000176026`).**
-> Fill the placeholders `<PREFIX>` (item key prefix), `<projNo>` (project number in
-> the Zoho URL), `<KANBAN_SPRINT_ID>`, `<BACKLOG_SPRINT_ID>`, `<ITEM_TYPE_TASK_ID>`
-> and `<PRIORITY_*_ID>` with this project's values. Status, member and user-group
-> IDs are workspace-wide values copied from Marhab — verify them on this board.
-
 # /ship
 
 Take whatever is currently changed in the working tree and turn it into a
@@ -21,7 +15,7 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
 
 ```
 /ship                     # infer branch name + commit message + PR from the diff
-/ship <PREFIX>-I12 <summary>    # use a specific ticket key, e.g. from a just-created ticket
+/ship SPP-I12 <summary>    # use a specific ticket key, e.g. from a just-created ticket
 ```
 
 ## Workflow
@@ -32,14 +26,14 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
    already committed, skip straight to push + PR (step 4) instead of branching
    again.
 
-2. **Branch name.** Convention: `<PREFIX>-I<ticket-number>-<Title-Case-Words>`
-   (e.g. `<PREFIX>-I12-Attendance-Register`). `<PREFIX>` is this project's Zoho Sprints
+2. **Branch name.** Convention: `SPP-I<ticket-number>-<Title-Case-Words>`
+   (e.g. `SPP-I12-Attendance-Register`). `SPP` is this project's Zoho Sprints
    prefix (Service Provider Portal). Build it: split the title on whitespace,
    Title-Case each word (leave all-uppercase acronyms like `API`, `QR`, `RTL`
    as-is), strip any character that isn't alphanumeric or a hyphen, join
    prefix + words with `-`. If the user gave a ticket key (or one was created
    earlier in the conversation via `/ticket`), use it. If not, and there's no
-   way to infer one, use a conventional slug without the `<PREFIX>-I<n>-` prefix
+   way to infer one, use a conventional slug without the `SPP-I<n>-` prefix
    (e.g. `feat/attendance-register`) rather than inventing a ticket number.
    The ticket number in the branch name is what drives the status sync (see
    `scripts/zoho/README.md`), so a made-up number would move the wrong ticket.
@@ -50,18 +44,18 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
 3. **Commit.** Stage the relevant files by name (never `git add -A`/`.`
    blindly) and write a commit message: an imperative present-tense summary
    line, a blank line, then 1-2 sentences of _why_. If a ticket key is known,
-   prefix the summary with `<PREFIX>-I<n>: ` and add a `Ticket:` trailer with the
+   prefix the summary with `SPP-I<n>: ` and add a `Ticket:` trailer with the
    ticket URL (see "Ticket URL format") directly above the `Co-Authored-By`
    trailer:
 
    ```
    git commit -m "$(cat <<'EOF'
-   <PREFIX>-I12: Check trainees in by QR pass on the attendance register
+   SPP-I12: Check trainees in by QR pass on the attendance register
 
    Reception needs to record attendance per session day; the register reads
    the session from the run and accepts desk-scanner input.
 
-   Ticket: https://sprints.zoho.sa/workspace/mwafqportal#P<projNo>/itemdetails/I12
+   Ticket: https://sprints.zoho.sa/workspace/mwafqportal#P13/itemdetails/I12
 
    Co-Authored-By: <the acting model's own trailer>
    EOF
@@ -83,7 +77,7 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
    - If a ticket exists, reference it in the body with a short ref plus the
      full URL, e.g.:
      ```
-     Ref <PREFIX>-I12 — https://sprints.zoho.sa/workspace/mwafqportal#P<projNo>/itemdetails/I12
+     Ref SPP-I12 — https://sprints.zoho.sa/workspace/mwafqportal#P13/itemdetails/I12
      ```
    - End the PR body with:
      ```
@@ -95,8 +89,8 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
      heuristic.
 
 6. **Link the PR to its Zoho Sprints ticket, if one exists.** If the branch
-   name (or the `/ship <PREFIX>-I<n> ...` argument) carries a ticket key like
-   `<PREFIX>-I12`, record the PR URL on that ticket in this exact format:
+   name (or the `/ship SPP-I<n> ...` argument) carries a ticket key like
+   `SPP-I12`, record the PR URL on that ticket in this exact format:
 
    ```
    PR => <PR URL>
@@ -116,27 +110,27 @@ handoff in one pass. This repo ships feature work directly to `main` via PR
 ## Ticket URL format
 
 ```
-https://sprints.zoho.sa/workspace/mwafqportal#P<projNo>/itemdetails/I<itemNo>
+https://sprints.zoho.sa/workspace/mwafqportal#P13/itemdetails/I<itemNo>
 ```
 
-`P<projNo>` is this project's project number (projNo `<projNo>`, Service Provider Portal) —
+`P13` is this project's project number (projNo `13`, Service Provider Portal) —
 fixed for this repo. `<itemNo>` is the plain ticket number (e.g. `12` for
-`I12`/`<PREFIX>-I12`), not the internal `itemId`.
+`I12`/`SPP-I12`), not the internal `itemId`.
 
 ## Zoho Sprints IDs (Service Provider Portal)
 
 Reuse these — don't re-derive them. Priorities and item types are
 **per-project**, not workspace-global.
 
-| Field                               | Value                  |
-| ----------------------------------- | ---------------------- |
-| teamId                              | `150001150029`         |
-| projectId (Service Provider Portal) | `1335000000176026`     |
-| backlog sprintId                    | `<BACKLOG_SPRINT_ID>`  |
-| Kanban board sprintId               | `<KANBAN_SPRINT_ID>`   |
-| Item type Task                      | `<ITEM_TYPE_TASK_ID>`  |
-| Priority Medium                     | `<PRIORITY_MEDIUM_ID>` |
-| Comment moduleId                    | `1335000000002127`     |
+| Field                               | Value              |
+| ----------------------------------- | ------------------ |
+| teamId                              | `150001150029`     |
+| projectId (Service Provider Portal) | `1335000000176026` |
+| backlog sprintId                    | `1335000000176028` |
+| Kanban board sprintId               | `1335000000176029` |
+| Item type Task                      | `1335000000176048` |
+| Priority Medium                     | `1335000000176046` |
+| Comment moduleId                    | `1335000000002127` |
 
 Do **not** reuse the sibling "Mwafq - OSH" (`MO`, `P8`) project's IDs here —
 that mismatch is exactly what breaks with "Sprint not available".
@@ -150,7 +144,7 @@ table and `STATUS_RANK` in `scripts/zoho/sync-ticket-status.mjs`.
 
 | Status            | statusId           | Confidence                                             |
 | ----------------- | ------------------ | ------------------------------------------------------ |
-| To do             | `1335000000008495` | unverified for this project                            |
+| To do             | `1335000000008495` | verified on SPP-I1 (2026-11-15)                        |
 | In progress       | `1335000000008497` | unverified for this project                            |
 | Ready For Testing | `1335000000164071` | unverified for this project                            |
 | Done              | `1335000000008499` | workspace-shared ID — unverified until the first merge |
@@ -162,9 +156,9 @@ the sync workflow's reference.
 ## Recording PR links on the ticket
 
 1. **Find the ticket.** Extract the item number (e.g. `I12` from
-   `<PREFIX>-I12-...`). Look it up with `ZohoSprints_GetItems` against
-   `sprintId=<KANBAN_SPRINT_ID>` (Kanban board) — then the backlog
-   `<BACKLOG_SPRINT_ID>` if not found — with `searchby="name"`,
+   `SPP-I12-...`). Look it up with `ZohoSprints_GetItems` against
+   `sprintId=1335000000176029` (Kanban board) — then the backlog
+   `1335000000176028` if not found — with `searchby="name"`,
    `searchvalue="I12"`, or reuse the `itemId` if it's already known from
    earlier in the conversation. Use the item's _actual_ `sprintId` for the
    calls below.

@@ -1,14 +1,8 @@
 ---
 name: pickup-ticket
-description: "Given a Zoho Sprints ticket ID (e.g. I12 or <PREFIX>-I12), fetch its title/description, do the repo's standard prework (checkout main, pull, branch off it), and start implementing what the ticket describes. Use when the user asks to 'pick up ticket X', 'start working on I12', 'work on ticket <PREFIX>-I12', or similar — the counterpart to /create-ticket (files it) and /ship (ships it)."
+description: "Given a Zoho Sprints ticket ID (e.g. I12 or SPP-I12), fetch its title/description, do the repo's standard prework (checkout main, pull, branch off it), and start implementing what the ticket describes. Use when the user asks to 'pick up ticket X', 'start working on I12', 'work on ticket SPP-I12', or similar — the counterpart to /create-ticket (files it) and /ship (ships it)."
 trigger: /pickup-ticket
 ---
-
-> **Setup still needed for this project (Zoho project `1335000000176026`).**
-> Fill the placeholders `<PREFIX>` (item key prefix), `<projNo>` (project number in
-> the Zoho URL), `<KANBAN_SPRINT_ID>`, `<BACKLOG_SPRINT_ID>`, `<ITEM_TYPE_TASK_ID>`
-> and `<PRIORITY_*_ID>` with this project's values. Status, member and user-group
-> IDs are workspace-wide values copied from Marhab — verify them on this board.
 
 # /pickup-ticket
 
@@ -21,21 +15,21 @@ skill covers the middle: turning a filed ticket into work in progress.
 
 ```
 /pickup-ticket I12          # ticket item number
-/pickup-ticket <PREFIX>-I12       # ticket key (same item, full key form)
+/pickup-ticket SPP-I12       # ticket key (same item, full key form)
 /pickup-ticket 12           # bare number, same item
 ```
 
 ## Workflow
 
 1. **Resolve the ticket.** Normalize whatever the user gave (`I12`,
-   `<PREFIX>-I12`, `12`) to the item number form Zoho Sprints uses (`I12`).
+   `SPP-I12`, `12`) to the item number form Zoho Sprints uses (`I12`).
    Look it up with `ZohoSprints_GetItems`:
 
    ```
    teamId: 150001150029
    projectId: 1335000000176026   (Service Provider Portal, Kanban)
-   sprintId: <KANBAN_SPRINT_ID>    (the Kanban board; fall back to the
-                                  backlog <BACKLOG_SPRINT_ID> if not found)
+   sprintId: 1335000000176029    (the Kanban board; fall back to the
+                                  backlog 1335000000176028 if not found)
    searchby: "name"
    searchvalue: "I12"
    ```
@@ -63,8 +57,8 @@ skill covers the middle: turning a filed ticket into work in progress.
    - `git pull origin main`
    - `git checkout -b <branch-name>` — derive the name from the ticket's
      key and title, matching this repo's convention (same as `/ship`):
-     `<PREFIX>-I<ticket-number>-<Title-Case-Words>`, e.g.
-     `<PREFIX>-I12-Attendance-Register`. Prefer reusing the ticket's own title
+     `SPP-I<ticket-number>-<Title-Case-Words>`, e.g.
+     `SPP-I12-Attendance-Register`. Prefer reusing the ticket's own title
      wording over inventing new phrasing.
 
 4. **Implement.** Work through the Acceptance Criteria list from step 2,
