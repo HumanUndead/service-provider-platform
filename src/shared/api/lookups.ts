@@ -32,6 +32,8 @@ export interface Option {
 
 /** A catalogue price for one classification (doc §10.4). */
 export interface ClassificationPrice {
+  /** Row id; among several B2C rows the highest wins (backend B5). */
+  id?: number;
   serviceProviderClassificationId: number;
   price: number;
   /**
@@ -215,9 +217,8 @@ export async function fetchServiceGroupServiceIds(
  * A group can have a B2C row and a B2B row for the same classification.
  * Branch services are priced for customers (their B2B price is always 0),
  * so the B2C row (`isB2CPrice: true`) wins; without one, the first match.
- * The working client took the first row whatever its flag, i.e. depended on
- * row order.
- * TODO(backend): confirm the B2C row is the intended branch default.
+ * Several B2C rows can match (nothing enforces one): like B2C booking on the
+ * backend, the newest (highest `id`) wins (backend B5).
  */
 export function priceFor(
   pricing: readonly ClassificationPrice[],
@@ -226,7 +227,13 @@ export function priceFor(
   const rows = pricing.filter(
     (p) => p.serviceProviderClassificationId === classificationId,
   );
-  return (rows.find((p) => p.isB2CPrice === true) ?? rows[0])?.price ?? 0;
+  const b2c = rows
+    .filter((p) => p.isB2CPrice === true)
+    .reduce<ClassificationPrice | undefined>(
+      (best, p) => (!best || (p.id ?? 0) > (best.id ?? 0) ? p : best),
+      undefined,
+    );
+  return (b2c ?? rows[0])?.price ?? 0;
 }
 
 /** id → name map of a loaded option list. */

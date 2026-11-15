@@ -129,7 +129,7 @@ export function ReservationsPage() {
   const city = idParam('city');
   const from = parseDayParam(params.get('from'));
   const to = parseDayParam(params.get('to'));
-  // Unset → the API default (providers: Cancel + NoShow excluded).
+  // Unset → providers: Cancel + NoShow excluded; `0` → every status.
   const excluded = parseExcludedStatus(params.get('excl'));
 
   // Search, ID number and phone: typed locally, written to the URL once the

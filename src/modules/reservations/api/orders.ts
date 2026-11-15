@@ -60,7 +60,9 @@ export interface OrderListParams {
 /**
  * The provider list query (§13.2), newest first. Provider users are scoped
  * by their token: no `ServiceProviderId`, and Cancel + NoShow are excluded
- * unless the filter set `ExcludedStatus` itself.
+ * unless the filter set `ExcludedStatus` itself. `excludedStatus: 0` asks
+ * for every status: the param is omitted (the backend has no default
+ * exclusion; the Cancel + NoShow default is the client's — backend B4).
  */
 export function orderListParams(
   p: OrderListParams,
@@ -71,7 +73,10 @@ export function orderListParams(
     CompanyId: p.companyId,
     ServiceProviderId: provider ? undefined : p.serviceProviderId,
     ExcludedStatus:
-      p.excludedStatus ?? (provider ? PROVIDER_EXCLUDED_STATUS : undefined),
+      p.excludedStatus === 0
+        ? undefined
+        : (p.excludedStatus ??
+          (provider ? PROVIDER_EXCLUDED_STATUS : undefined)),
     OrderDirection: false,
     OrderBy: 'CreatedAt',
     pageNumber: p.pageNumber,

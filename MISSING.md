@@ -86,9 +86,9 @@ screens only if admins will use this app:
 - **Reservations**
   - Board and calendar load one large page (100 / 200); beyond that a line
     says only the first N are shown.
-  - A provider user cannot ask to "exclude nothing": with no excluded
-    statuses ticked, the API default (Cancel + NoShow) applies (§13.2).
-    See backend question B4.
+  - "Exclude nothing" is `?excl=0` (unticking the last status): the portal
+    then omits `ExcludedStatus` (B4). With `excl` unset the chips show
+    nothing ticked although the Cancel + NoShow default applies.
 - **Claims**
   - No patient (`OwnerId`) filter — there is no patient lookup.
 - **Ledgers**
@@ -96,7 +96,7 @@ screens only if admins will use this app:
     in `LedgerList` (filtered by provider and the link's `from` / `to`).
     `LedgerList` has no `Id` filter, so the lookup can miss; then status,
     period, totals, the Paid switch and the admin-note editor are hidden.
-    The fix is backend question B1.
+    `LedgerGetById` has no status / period / tax (B1), so this fallback stays.
 - **Branches**
   - Bulk delete has no "delete anyway" step: branches the backend refuses
     with `-1` (related data) stay selected and the user is asked to delete
@@ -123,49 +123,39 @@ screens only if admins will use this app:
 | 7   | Team import id                        | `ServiceProviderUserExport` takes `ServiceProviderId` + `File`. The portal sends the provider id.          |
 | 9   | Tag list for providers                | `General/Tags/List` takes `ServiceProviderId`. The portal sends the user's own provider id.                |
 
-### Still needs an answer
+### Answered by the backend handoff (2026-11-15, checked against code, not Staging)
 
-**Security (please fix first)**
+- **S1.** Both ledger by-id endpoints now return 401 without a token and 403
+  `ServiceProvider.AccessDenied` for another provider's ledger (or an old
+  token without branch claims). Fixed in code, **not deployed**. The portal
+  already treats 403 as forbidden (`ApiError.isForbidden`).
+- **B1.** `LedgerGetById` returns `total` and `adminNote`, but not `status`,
+  `claimedFrom`, `claimedTo` or `tax`. It returns 600 when the ledger has no
+  plain service. The `LedgerList` fallback stays.
+- **B2.** `MultipleDelete` never existed in the backend repo, so nobody knows
+  if removing it was intended. A single delete refused for related data returns
+  200 `value: -1`.
+- **B3.** `ServiceProviderBranchIds` filters `ShortcutList`; foreign ids → 403.
+- **B4.** The backend applies no default exclusion; omit `ExcludedStatus`
+  (or send 0) for every status. `Statuses` is not in the reviewed code, so
+  don't use it. The portal now supports `?excl=0`.
+- **B5.** The `isB2CPrice` row for the branch's classification is right; the
+  newest (highest `id`) wins if several match. The portal does the same.
+- **B6.** `CompanyId` is ignored for provider users; access comes only from
+  `UserServiceProviderBranchRequest[]`.
+- **B7.** Login is case-insensitive; OTP depends on DB collation. Keep
+  sending the username as stored, trimmed.
+- **B8.** No tag flag exists; keep the settings gate.
+- **B9.** `ClaimReservations` ignores the query parameters.
+- **B10.** The ledger by-id endpoints now document their responses (after deploy).
 
-- **S1. Ledger endpoints answer without a token.** On staging,
-  `GET Reservation/Reservation/LedgerGetById?Id=…` and
-  `GET Reservation/Reservation/LedgerDetailsGetById?Id=…` return 600
-  "Ledgers Not Found" to a request with **no** `Authorization` header, where
-  every other endpoint returns 401. An existing id would presumably return
-  the ledger to anyone. Please require auth (and provider scoping) on both.
+### Still to verify on Staging (after deploy, with a Provider account)
 
-**Questions**
-
-- **B1. `LedgerGetById` (old item 8).** It is new and its response is not in
-  Swagger. Does it return `status`, `claimedFrom`, `claimedTo`, `total`,
-  `tax` and `adminNote` (the same fields as a `LedgerList` row)? If yes, the
-  portal will use it for a ledger opened by link. Please share a sample
-  response.
-- **B2. `MultipleDelete` removed.** All `MultipleDelete` endpoints are gone
-  from the `Provider` service (provider, branch, branch service, category,
-  classification). Intentional? The portal now deletes branches one call at
-  a time.
-- **B3. `ShortcutList` branch filter.** `ServiceProviderBranchIds` now appears
-  on `ShortcutList`. Confirm it filters provider users' orders (the portal
-  relies on it, together with `ExcludedStatus`).
-- **B4. "Exclude nothing" on `ShortcutList`.** With `ExcludedStatus` absent
-  (or 0?) the default Cancel + NoShow exclusion applies. How can a provider
-  ask for every status? And what does the new `Statuses` parameter do?
-- **B5. Service-group default price (old item 1).** The portal prefills from
-  the row with `isB2CPrice: true`. Confirm that is the right row.
-- **B6. Provider users in `CompanyId` (old item 3).** `User/Create` / `Update`
-  still have only `CompanyId`; the portal sends the provider id there, as the
-  working client does. Confirm.
-- **B7. Login username matching (old item 4).** Login only trims the
-  username. Are usernames case-insensitive on the server?
-- **B8. Tags tab permission (old item 6).** No tags permission flag exists;
-  the portal uses `view:` / `update:service-provider-settings`. Should there
-  be a dedicated flag?
-- **B9. `ClaimReservations` context.** The portal sends the list context
-  (`ServiceProviderId` or `ServiceProviderBranchId`) as query parameters, as
-  the working client does, but Swagger declares none. Is it ignored?
-- **B10. Response schemas in Swagger.** Most endpoints document no response
-  body. Adding them would let us check items like B1 and B5 ourselves.
+1. S1: anonymous → 401, own ledger → 200, foreign ledger → 403 (both endpoints).
+2. Reservation filters: branch filter, default exclusion, `excl=0`.
+3. Which build the Staging `Statuses` parameter comes from.
+4. `UserName` collation (OTP case-insensitivity).
+5. New ledger response schemas in Swagger.
 
 ---
 
@@ -194,7 +184,7 @@ product. Section numbers are the A-to-Z's.
 | §19.8.6                 | `/dashboard` landing page, `/error/*` routes                                             | `/dashboard` redirects to `/today`; there are no `/error/*` pages (errors show in place)                                                                                            | naming only                          |
 | §20.1                   | Pickers send no `PageSize`                                                               | `PageSize=1000` on pickers                                                                                                                                                          | §20.1 ("or send a large `PageSize`") |
 | §20.4, §32.2            | Provider tag picker sends no filter                                                      | Sends `ServiceProviderId={own id}`; admins `Type=1`                                                                                                                                 | §32.2                                |
-| §20.6                   | Group default price = first match                                                        | B2C row first, else first match (B5)                                                                                                                                                | §31.1 (stopgap)                      |
+| §20.6                   | Group default price = first match                                                        | B2C row (highest `id`), else first match (B5)                                                                                                                                       | §31.1 (stopgap)                      |
 | §13.2, §32.6            | No branch filter on `ShortcutList`                                                       | `ShortcutList` with `ServiceProviderBranchIds` (the backend added it — B3)                                                                                                          | §32.6                                |
 | §9.5, §31.3             | —                                                                                        | Every open weekday needs ≥ 1 time; no "Remove day"                                                                                                                                  | matches §31.3                        |
 | §11.3–11.4              | Add flow sends no `SlotTimeIds`; standalone create needs ≥ 1                             | The add dialog offers the slot times as an optional pick (sent as `SlotTimeIds` when chosen; needs `update:service-provider-branch-vaccine-slots`) — both §11.3 modes in one dialog | §11.3                                |
