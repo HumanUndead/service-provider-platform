@@ -158,9 +158,8 @@ locally. The forgot-password OTP token is memory-only on purpose.
 - GitHub Action `.github/workflows/zoho-ticket-status-sync.yml` moves the
   ticket on branch push / PR merge via `scripts/zoho/sync-ticket-status.mjs`.
   It needs repo secrets `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`,
-  `ZOHO_REFRESH_TOKEN` and repo variables `ZOHO_KANBAN_SPRINT_ID`,
-  `ZOHO_BACKLOG_SPRINT_ID`, `ZOHO_TICKET_PREFIX`; without them it skips.
-  It runs with `DRY_RUN: true` until the status IDs are verified.
+  `ZOHO_REFRESH_TOKEN`. Project, sprint IDs and the `SPP` prefix are
+  defaults in the script (no repo variables needed, same as MARHAB).
 - Zoho project ID `1335000000176026`; other IDs are placeholders — see
   `scripts/zoho/README.md`.
 
