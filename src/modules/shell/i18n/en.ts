@@ -111,6 +111,10 @@ export const en = {
     allBranches: 'All branches',
     branchCount_one: '{{count}} branch',
     branchCount_other: '{{count}} branches',
+    branchNamed: '{{name}} branch',
+    unnamedBranch: 'Branch #{{id}}',
+    branchSwitcher: 'Switch branch',
+    manageBranches: 'Manage branches',
   },
   nav: {
     today: 'Today',

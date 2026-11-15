@@ -1,6 +1,12 @@
 export const en = {
   subtitle: 'Reservations at your branches',
   empty: 'No reservations match these filters.',
+  emptyHint: 'Try another view or clear the filters.',
+  emptySearch: {
+    title: 'No patient matches “{{q}}”',
+    hint: 'Check the spelling, or enter the full ID number. Search covers the current view only.',
+    clear: 'Clear search',
+  },
   hero: {
     eyebrow: 'Reservations',
     title: 'Who is coming, and where are they?',
@@ -23,8 +29,8 @@ export const en = {
     fit: 'Result',
     branch: 'Branch',
     allBranches: 'All branches',
-    channel: 'Channel',
-    allChannels: 'All channels',
+    channel: 'Source',
+    allChannels: 'All sources',
     funding: 'Funding',
     allFunding: 'Any funding',
     idNumber: 'ID number',
@@ -51,6 +57,7 @@ export const en = {
     },
   },
   columns: {
+    idTail: 'ID',
     id: 'Reservation',
     name: 'Patient',
     branch: 'Branch',
@@ -58,7 +65,7 @@ export const en = {
     date: 'Appointment',
     status: 'Status',
     amount: 'Cost',
-    channel: 'Channel',
+    channel: 'Source',
   },
   next: {
     checkIn: 'Check in',
@@ -87,7 +94,7 @@ export const en = {
     appointment: 'Appointment',
     createdAt: 'Booked on',
     createdBy: 'Booked by',
-    channel: 'Channel',
+    channel: 'Source',
     funding: 'Funding',
     services: 'Services',
     vaccines: 'Vaccines',

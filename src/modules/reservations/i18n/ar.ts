@@ -8,6 +8,12 @@ type Shape<T> = {
 export const ar: Shape<typeof en> = {
   subtitle: 'الحجوزات في فروعكم',
   empty: 'لا توجد حجوزات تطابق هذه الفلاتر.',
+  emptyHint: 'جرّب عرضاً آخر أو أزل الفلاتر.',
+  emptySearch: {
+    title: 'لا يوجد مراجع يطابق «{{q}}»',
+    hint: 'تحقق من الكتابة أو أدخل رقم الهوية كاملاً. البحث يشمل العرض الحالي فقط.',
+    clear: 'مسح البحث',
+  },
   hero: {
     eyebrow: 'الحجوزات',
     title: 'من القادم، وإلى أي فرع؟',
@@ -34,8 +40,8 @@ export const ar: Shape<typeof en> = {
     fit: 'النتيجة',
     branch: 'الفرع',
     allBranches: 'كل الفروع',
-    channel: 'القناة',
-    allChannels: 'كل القنوات',
+    channel: 'المصدر',
+    allChannels: 'كل المصادر',
     funding: 'التمويل',
     allFunding: 'أي تمويل',
     idNumber: 'رقم الهوية',
@@ -65,6 +71,7 @@ export const ar: Shape<typeof en> = {
     },
   },
   columns: {
+    idTail: 'الهوية',
     id: 'الحجز',
     name: 'المراجع',
     branch: 'الفرع',
@@ -72,7 +79,7 @@ export const ar: Shape<typeof en> = {
     date: 'الموعد',
     status: 'الحالة',
     amount: 'التكلفة',
-    channel: 'القناة',
+    channel: 'المصدر',
   },
   next: {
     checkIn: 'تسجيل وصول',
@@ -101,7 +108,7 @@ export const ar: Shape<typeof en> = {
     appointment: 'الموعد',
     createdAt: 'تاريخ الحجز',
     createdBy: 'حجز بواسطة',
-    channel: 'القناة',
+    channel: 'المصدر',
     funding: 'التمويل',
     services: 'الخدمات',
     vaccines: 'اللقاحات',

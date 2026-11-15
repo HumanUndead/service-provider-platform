@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Provider portal — Ledgers</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./pulse.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#006ba6}a:hover{color:#1e2364}
+</style>
+</helmet>
+<div class="{{cls}}" dir="ltr" style="min-height: 100%; display: flex; flex-wrap: wrap">
+
+<aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 4h16v8h-8v8H4z"/></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">Mwafq</span><span style="font-size: 12px">Service provider portal</span></span>
+</div>
+<details class="bsw">
+<summary>
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)"><span class="l-all">All branches · 2</span><span class="l-a">Test2 branch</span><span class="l-b">Test 3 branch</span></span></span>
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</summary>
+<div class="bsw-m" role="radiogroup" aria-label="Branch">
+<label><input type="radio" name="bsw" value="all">All branches</label>
+<label><input type="radio" name="bsw" value="a">Test2</label>
+<label><input type="radio" name="bsw" value="b">Test 3</label>
+<a href="BranchesEn.dc.html">Manage branches</a>
+</div>
+</details>
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 4px">
+<a class="nv" href="MainEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>Today</a>
+<a class="nv" href="ReservationsEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">Reservations</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">2</span></a>
+<a class="nv on" aria-current="page" href="LedgersEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Ledgers</a>
+<a class="nv" href="TeamEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 15.5c1.7.7 2.7 2.2 3 4.5"/></svg>Team</a>
+<a class="nv" href="ServicesEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>Services</a>
+<a class="nv" href="BranchesEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Branches</a>
+<a class="nv" href="ProfileEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>Profile</a>
+</nav>
+<div style="flex: 1"></div>
+<a class="nv" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg>Help &amp; support</a>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 30px 0">
+<div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">Ledgers</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">Monthly claims Mwafq owes you for completed examinations</p></div>
+<button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">Search name, phone or ID</span><kbd class="num" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
+<button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>Check in</button>
+<div class="sg" role="group" aria-label="Language"><a href="Ledgers.dc.html" aria-label="العربية">ع</a><span class="on num" aria-current="true">EN</span></div>
+<button type="button" class="b bs ic" aria-label="Switch to dark mode" onClick="{{toggleDark}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<button type="button" class="num" aria-label="Account menu, kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
+</header>
+
+<main style="width: 100%; max-width: 90rem; margin: 0 auto; padding: 24px 30px 40px; display: flex; flex-direction: column; gap: 28px">
+
+<section class="hero en" aria-labelledby="hero-t">
+<div class="glow" aria-hidden="true"></div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div class="ey"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>OUTSTANDING</div>
+<h2 id="hero-t" style="margin: 0; display: flex; align-items: baseline; gap: 12px; font-weight: 400"><span style="color: var(--ov-hero-ink-2); font-size: 16px">SAR</span><span class="fig" style="font-size: 64px">3,884.70</span></h2>
+<p style="margin: 0; color: var(--ov-hero-ink-2)"><span class="num">4</span> unpaid claims · oldest <span class="num">158</span> days · amounts include <span class="num">15%</span> VAT</p>
+</div>
+<button type="button" class="b bh"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Statement (PDF)</button>
+</div>
+<div style="margin-top: 26px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px">
+<sc-for list="{{aging}}" as="a" hint-placeholder-count="4">
+<div class="ht" style="cursor: default">
+<span class="cap" style="font-weight: 700">{{a.l}}</span>
+<span class="fig" style="font-size: 30px; color: {{a.fg}}">{{a.v}}</span>
+<span aria-hidden="true" style="height: 6px; border-radius: 999px; background: var(--ov-hero-line)"><span style="display: block; height: 6px; width: {{a.w}}; border-radius: 999px; background: {{a.bar}}"></span></span>
+</div>
+</sc-for>
+<div class="ht" style="cursor: default">
+<span class="cap" style="font-weight: 700">November <span class="num">2026</span> · open period</span>
+<span class="fig" style="font-size: 30px">23.00</span>
+<span class="cap">1 completed exam · claimed after closing</span>
+</div>
+</div>
+</section>
+
+<section class="pn en2" aria-label="Claims" style="overflow: hidden">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 18px 22px">
+<span class="it" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>
+<div style="flex: 1 1 160px"><h2 style="margin: 0; font-size: 16px; font-weight: 700">Claims</h2><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">Year <span class="num">2026</span></p></div>
+<div class="sg" role="tablist" aria-label="Claim status">
+<button type="button" role="tab" aria-selected="false">All <span class="num">5</span></button>
+<button type="button" role="tab" aria-selected="true" class="on">Unpaid <span class="num">4</span></button>
+<button type="button" role="tab" aria-selected="false">Paid <span class="num">1</span></button>
+</div>
+<div class="fb" role="group" aria-label="Filters">
+<span class="lead"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters</span>
+<button type="button">Branch: All</button>
+<button type="button">Year: <span class="num">2026</span></button>
+</div>
+</div>
+<div style="overflow-x: auto">
+<table class="tb" style="min-width: 1020px">
+<thead>
+<tr>
+<th scope="col">Claim</th>
+<th scope="col">Period</th>
+<th scope="col">Branch</th>
+<th scope="col">Examinations</th>
+<th scope="col" class="end">Amount</th>
+<th scope="col">Status</th>
+<th scope="col">Invoice</th>
+<th scope="col" class="end"><span class="vh">Actions</span></th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{claims}}" as="c" hint-placeholder-count="5">
+<tr>
+<td><div class="num" style="font-weight: 600">#{{c.id}}</div><div style="color: var(--ov-ink-2); font-size: 12px">Claimed {{c.claimed}}</div></td>
+<td><div style="font-weight: 500">{{c.period}}</div><div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{c.range}}</div></td>
+<td><div style="font-weight: 500">{{c.branch}}</div><div style="color: var(--ov-ink-2); font-size: 12px">Branch code <span class="num">{{c.code}}</span></div>
+<sc-if value="{{c.warn}}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; color: var(--ov-warn); font-size: 12px; font-weight: 700">Code 183 is Amman in another claim</div></sc-if></td>
+<td><div style="display: flex; flex-wrap: wrap; gap: 4px; max-width: 220px"><sc-for list="{{c.exams}}" as="x" hint-placeholder-count="2"><a class="tg num" href="ReservationsEn.dc.html">#{{x}}</a></sc-for><sc-if value="{{c.hasMore}}" hint-placeholder-val="{{ false }}"><a class="tg" href="ReservationsEn.dc.html" style="background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 700">+<span class="num">{{c.more}}</span> more</a></sc-if></div><div style="color: var(--ov-ink-2); font-size: 12px; margin-top: 4px">Examinations: <span class="num">{{c.count}}</span></div></td>
+<td class="end" style="white-space: nowrap"><div style="font-weight: 700">SAR <span class="num">{{c.total}}</span></div><div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{c.base}} + {{c.vat}} VAT</div></td>
+<td><span class="{{c.sCls}}">{{c.status}}</span><div style="color: {{c.ageFg}}; font-size: 12px; margin-top: 4px; font-weight: 500">{{c.age}}</div></td>
+<td>
+<sc-if value="{{c.hasFile}}" hint-placeholder-val="{{ false }}"><a href="#" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg><span class="num">1.png</span></a></sc-if>
+<sc-if value="{{c.noFile}}" hint-placeholder-val="{{ true }}"><button type="button" class="b bs sm" style="border-style: dashed; border-color: var(--ov-line-strong)"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Upload invoice</button></sc-if>
+</td>
+<td class="end"><button type="button" class="b bg ic sm" aria-label="Actions for claim {{c.id}}" style="width: 36px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01" style="stroke-width: 3.6"/></svg></button></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 14px 22px; border-top: 1px solid var(--ov-line); color: var(--ov-ink-2); font-size: 13px"><span>Showing all <span class="num">5</span> claims of <span class="num">2026</span></span><span>An admin note appears on a claim only when Mwafq adds one.</span></div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1200}}'>
+var PD={on:false};try{PD.on=localStorage.getItem('pulse-dark')==='1';}catch(e){}
+function pdToggle(e){PD.on=!PD.on;try{localStorage.setItem('pulse-dark',PD.on?'1':'0');}catch(x){}var r=(e.currentTarget||e.target).closest('.ov');if(r)r.classList.toggle('dark',PD.on);}
+class Component extends DCLogic {
+renderVals() {
+function c(id, period, range, branch, code, exams, extra, base, vat, total, claimed, paid, age, old, file, warn){
+return {id:id, period:period, range:range, branch:branch, code:code, exams:exams, hasMore:extra>0, more:extra, count:exams.length + extra,
+base:base, vat:vat, total:total, claimed:claimed, status:paid?'Paid':'Unpaid', sCls:paid?'pl p-up':'pl p-warn',
+age:age, ageFg:old?'var(--ov-down)':'var(--ov-ink-2)', hasFile:file, noFile:!file, warn:!!warn};
+}
+var ink = 'var(--ov-hero-ink)';
+return {
+cls: (this.props.dark || PD.on) ? 'ov dark' : 'ov', toggleDark: pdToggle,
+aging: [
+{l:'0–30 days', v:'0.00', w:'0%', fg:ink, bar:'var(--ov-hero-accent)'},
+{l:'31–60 days', v:'23.00', w:'2%', fg:ink, bar:'var(--ov-hero-warn)'},
+{l:'61–90 days', v:'0.00', w:'0%', fg:ink, bar:'var(--ov-hero-warn)'},
+{l:'Over 90 days', v:'3,861.70', w:'100%', fg:'var(--ov-hero-down)', bar:'var(--ov-hero-down)'}
+],
+claims: [
+c(436, 'September 2026', '1–30 Sep', 'Riyadh Branch', '139', [5523], 0, '20.00', '3.00', '23.00', '5 Oct 2026', false, 'Unpaid for 36 days', false, false),
+c(362, 'July 2026', '1–31 Jul', 'Amman Branch', '183', [4507, 4508], 0, '2,028.00', '304.20', '2,332.20', '5 Aug 2026', false, 'Unpaid for 97 days', true, false),
+c(357, 'July 2026', '1–31 Jul', 'Riyadh Branch', '139', [4157, 4159, 4160], 7, '200.00', '30.00', '230.00', '5 Aug 2026', true, 'Paid', false, true),
+c(323, 'June 2026', '1–30 Jun', 'Riyadh Branch', '183', [3017], 0, '310.00', '46.50', '356.50', '5 Jul 2026', false, 'Unpaid for 128 days', true, false, true),
+c(281, 'May 2026', '1–31 May', 'Riyadh Branch', '139', [2974, 2976], 0, '1,020.00', '153.00', '1,173.00', '5 Jun 2026', false, 'Unpaid for 158 days', true, false)
+]
+};
+}
+}
+</script>
+</body>
+</html>

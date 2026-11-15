@@ -120,6 +120,10 @@ export const ar: Shape<typeof en> = {
     branchCount_few: '{{count}} فروع',
     branchCount_many: '{{count}} فرعًا',
     branchCount_other: '{{count}} فرع',
+    branchNamed: 'فرع {{name}}',
+    unnamedBranch: 'الفرع #{{id}}',
+    branchSwitcher: 'تبديل الفرع',
+    manageBranches: 'إدارة الفروع',
   },
   nav: {
     today: 'اليوم',

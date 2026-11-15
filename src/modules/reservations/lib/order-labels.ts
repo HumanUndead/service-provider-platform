@@ -24,6 +24,9 @@ export const orderChannel = (
 ): RequestChannel | null =>
   known(RequestChannel, o.requestFlow?.channel ?? o.requestChannel);
 
+/** Last four digits of a national ID behind a mask: `•••• •• 1234`. */
+export const maskIdentity = (id: string) => `•••• •• ${id.slice(-4)}`;
+
 /** `null` (show nothing) when absent or unknown. */
 export const orderFunding = (
   o: Pick<Order, 'requestFlow' | 'requestFunding'>,

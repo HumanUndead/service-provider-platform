@@ -15,7 +15,8 @@ rules); the theme and product are this project's.
 - `pulse.css` — the **Pulse** theme: every token and component recipe.
   Ported to `src/index.css` (tokens) and `src/shared/components/pulse/`.
 - `*.dc.html` — one board per screen (markup = visual spec, the inline
-  `renderVals()` script = sample data and derived values):
+  `renderVals()` script = sample data and derived values). Each has an
+  English (LTR) twin `*En.dc.html`:
 
 | Board                  | Screen                                   | Route                         | Status                           |
 | ---------------------- | ---------------------------------------- | ----------------------------- | -------------------------------- |
@@ -63,9 +64,11 @@ Tokens are Tailwind classes (`src/index.css`), redefined under `.dark`:
 
 - grounds `bg-canvas` `bg-surface` `bg-raised` `bg-sunken`
 - ink `text-ink` `text-ink-2` `text-ink-3`; lines `border-line` `border-line-strong`
-- the one accent: `bg-brand` `text-brand` `bg-brand-soft` `bg-brand-strong` `text-on-brand`
+- the one accent (indigo): `bg-brand` `text-brand` `bg-brand-soft` `bg-brand-strong` `text-on-brand`;
+  category highlight `bg-cat-soft` `text-cat` (OSH source, company scope)
 - status: `up` (success) `down` (danger) `warn` `flat` (neutral), each with `-soft`
-- hero palette (sidebar + one hero per page): `bg-hero` `bg-hero-raised`
+- hero palette (one hero per page — the sidebar is a light `bg-surface`
+  panel now): `bg-hero` `bg-hero-raised`
   `text-hero-ink(-2)` `border-hero-line` `text-hero-accent|up|down|warn`
 - radius: `rounded-md` 12 (controls) · `rounded-xl` 16 · `rounded-2xl` 24
   (panels) · `rounded-3xl` 32 (hero) · `rounded-full` (buttons, pills)
@@ -78,7 +81,7 @@ Pulse names in new code.
 ## Reusable components
 
 - `src/shared/components/ui/` — shadcn primitives (Button has Pulse variants:
-  `default` ink→violet, `outline`, `ghost`, `brand`, `tint`, `hero`,
+  `default` ink→accent, `outline`, `ghost`, `brand`, `tint`, `hero`,
   `destructive`). Missing one → `npx shadcn@latest add <name>`.
 - `src/shared/components/pulse/` — design-system pieces: `Panel`,
   `PanelHeader`, `Hero`, `HeroEyebrow`, `HeroTitle`, `HeroFigure`,
@@ -90,7 +93,8 @@ Pulse names in new code.
   `PageHeader`, `SearchBox`, filters, form fields (`layout/form/*`),
   `entity-form-dialog`, table cells (`layout/table/*`), `KpiCard`, motion.
 - Shell: `src/modules/shell/_components/` — `AppLayout`, `SidebarContent`
-  (hero palette, branch switcher, badges), `Topbar` (search, check-in,
+  (light panel, badges), `BranchSwitcher` (drives the Today / Reservations
+  URL branch filter; elsewhere opens Today scoped to the branch), `Topbar` (search, check-in,
   language, theme, account), `PagePlaceholder`.
 
 Reference implementations to copy from: `modules/reservations` (hero with

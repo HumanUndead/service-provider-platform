@@ -13,20 +13,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0}
-a{color:#5b3cc4}a:hover{color:#44299e}
+a{color:#006ba6}a:hover{color:#1e2364}
 </style>
 </helmet>
 <div class="{{cls}}" dir="rtl" style="min-height: 100%; display: flex; flex-wrap: wrap">
 
 <aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
-<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px">م</span>
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 4h16v8h-8v8H4z"/></svg></span>
 <span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">موفق</span><span style="font-size: 12px">بوابة مقدم الخدمة</span></span>
 </div>
-<button type="button" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; border: 1px solid var(--ov-hero-line); background: var(--ov-hero-raised); color: var(--ov-hero-ink); font: inherit; text-align: start; cursor: pointer">
-<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)">كل الفروع · فرعان</span></span>
+<details class="bsw">
+<summary>
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)"><span class="l-all">كل الفروع · فرعان</span><span class="l-a">فرع Test2</span><span class="l-b">فرع Test 3</span></span></span>
 <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-</button>
+</summary>
+<div class="bsw-m" role="radiogroup" aria-label="الفرع">
+<label><input type="radio" name="bsw" value="all">كل الفروع</label>
+<label><input type="radio" name="bsw" value="a">Test2</label>
+<label><input type="radio" name="bsw" value="b">Test 3</label>
+<a href="Branches.dc.html">إدارة الفروع</a>
+</div>
+</details>
 <nav aria-label="القائمة الرئيسية" style="display: flex; flex-direction: column; gap: 4px">
 <a class="nv" href="Main.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>اليوم</a>
 <a class="nv on" aria-current="page" href="Reservations.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">الحجوزات</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">{{todayCount}}</span></a>
@@ -45,8 +53,8 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 <div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">الحجوزات</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">طلبات الفحص الواردة من الشركات · كل الفروع</p></div>
 <button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">ابحث بالاسم أو الجوال أو الهوية</span><kbd class="num" dir="ltr" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
 <button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>تسجيل وصول</button>
-<div class="sg" role="group" aria-label="اللغة"><button type="button" class="on" aria-pressed="true">ع</button><button type="button" class="num" aria-pressed="false">EN</button></div>
-<button type="button" class="b bs ic" aria-label="التبديل إلى الوضع الداكن"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<div class="sg" role="group" aria-label="اللغة"><span class="on" aria-current="true">ع</span><a class="num" href="ReservationsEn.dc.html" aria-label="English">EN</a></div>
+<button type="button" class="b bs ic" aria-label="التبديل إلى الوضع الداكن" onClick="{{toggleDark}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
 <button type="button" class="num" aria-label="قائمة الحساب، kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
 </header>
 
@@ -77,14 +85,15 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 </div>
 <div class="fb" role="group" aria-label="الفلاتر">
 <span class="lead"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>الفلاتر</span>
-<button type="button">الفرع: الكل</button>
+<select class="{{brCls}}" aria-label="تصفية حسب الفرع" value="{{branch}}" onChange="{{setBranch}}"><option value="all">الفرع: الكل</option><option value="Test2">الفرع: Test2</option><option value="Test 3">الفرع: Test 3</option></select>
 <button type="button">التاريخ: أي وقت</button>
+<button type="button">المصدر: الكل</button>
 <button type="button">الشركة: الكل</button>
 <button type="button">+ فلتر</button>
 </div>
 <label style="flex: 1 1 220px; max-width: 320px; position: relative; display: block">
 <span class="vh">بحث في الحجوزات</span>
-<input class="in" type="search" placeholder="الاسم، الجوال، الهوية أو رقم الحجز" style="border-radius: 999px; padding-inline-start: 38px">
+<input class="in" type="search" placeholder="ابحث بالاسم أو رقم الهوية" value="{{q}}" onChange="{{setQ}}" style="border-radius: 999px; padding-inline-start: 38px">
 <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; inset-inline-start: 13px; top: 11px; color: var(--ov-ink-2)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
 </label>
 <div style="flex: 1 1 0"></div>
@@ -112,7 +121,7 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 <tr>
 <th scope="col" style="width: 44px; padding-inline-end: 0"><input type="checkbox" checked="{{allChecked}}" onChange="{{toggleAll}}" aria-label="تحديد كل الظاهر"></th>
 <th scope="col">المراجع</th>
-<th scope="col">الطلب</th>
+<th scope="col">المصدر</th>
 <th scope="col">الموعد · الفرع</th>
 <th scope="col" class="end">المبلغ</th>
 <th scope="col">الحالة</th>
@@ -126,8 +135,9 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 <td>
 <button type="button" onClick="{{r.open}}" style="padding: 0; border: 0; background: transparent; font: inherit; font-weight: 700; color: var(--ov-ink); text-align: start; cursor: pointer; text-decoration: underline; text-decoration-color: var(--ov-line-strong); text-underline-offset: 4px">{{r.name}}</button>
 <div class="num" style="color: var(--ov-ink-2); font-size: 12px"><span dir="ltr">{{r.ref}}</span> · <span dir="ltr">{{r.phone}}</span></div>
+<div style="color: var(--ov-ink-2); font-size: 12px">الهوية <span class="num" dir="ltr">•••• •• {{r.idTail}}</span></div>
 </td>
-<td><div style="font-weight: 500">{{r.reqTitle}}</div><div style="color: var(--ov-ink-2); font-size: 12px">{{r.reqSub}}</div></td>
+<td><span class="tg" style="background: {{r.srcBg}}; color: {{r.srcFg}}; font-weight: 700">{{r.src}}</span><div style="color: var(--ov-ink-2); font-size: 12px; margin-top: 4px">{{r.reqSub}}</div></td>
 <td style="white-space: nowrap"><div style="font-weight: 500">{{r.date}} · <span class="num">{{r.time}}</span></div><div style="color: var(--ov-ink-2); font-size: 12px">{{r.rel}} · {{r.branch}}</div></td>
 <td class="end" style="white-space: nowrap"><div style="font-weight: 700"><span class="num">{{r.totalStr}}</span> ر.س</div><div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{r.baseStr}} + {{r.vatStr}} ضريبة</div></td>
 <td><span class="{{r.sCls}}">{{r.sLabel}}</span>
@@ -144,12 +154,13 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 <sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
 <div style="margin: 20px; padding: 36px 24px; border: 1px dashed var(--ov-line-strong); border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
 <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; background: var(--ov-sunken); color: var(--ov-ink-2); display: grid; place-items: center"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
-<div style="font-weight: 700; font-size: 15px">لا توجد حجوزات في هذا العرض</div>
-<div style="color: var(--ov-ink-2)">جرّب عرضاً آخر أو أزل الفلاتر.</div>
+<div style="font-weight: 700; font-size: 15px">{{emptyTitle}}</div>
+<div style="color: var(--ov-ink-2)">{{emptySub}}</div>
+<sc-if value="{{searching}}" hint-placeholder-val="{{ false }}"><button type="button" class="b bs sm" onClick="{{clearQ}}">مسح البحث</button></sc-if>
 </div>
 </sc-if>
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--ov-line); color: var(--ov-ink-2); font-size: 13px">
-<span>عرض <span class="num">{{visibleCount}}</span> من <span class="num">{{visibleCount}}</span> · الأحدث أولاً</span>
+<span>عرض <span class="num">{{visibleCount}}</span> من <span class="num">{{totalCount}}</span> · الأحدث أولاً</span>
 <span style="display: flex; align-items: center; gap: 8px">صفوف الصفحة <button type="button" class="b bs sm num" style="padding: 0 12px">25</button></span>
 </div>
 </section>
@@ -173,7 +184,7 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 <dt style="color: var(--ov-ink-2)">الجوال</dt><dd class="num" style="margin: 0; font-weight: 500"><span dir="ltr">{{d.phone}}</span></dd>
 <dt style="color: var(--ov-ink-2)">رقم الهوية</dt><dd style="margin: 0; font-weight: 500"><span class="num" dir="ltr">•••• •• {{d.idTail}}</span> <button type="button" style="padding: 0; border: 0; background: transparent; font: inherit; color: var(--ov-accent); font-weight: 700; cursor: pointer; margin-inline-start: 4px">إظهار</button></dd>
 <dt style="color: var(--ov-ink-2)">الشركة</dt><dd style="margin: 0; font-weight: 500">{{d.companyShow}}</dd>
-<dt style="color: var(--ov-ink-2)">الدفع عبر</dt><dd style="margin: 0; font-weight: 500">{{d.reqTitle}}</dd>
+<dt style="color: var(--ov-ink-2)">المصدر</dt><dd style="margin: 0"><span class="tg" style="background: {{d.srcBg}}; color: {{d.srcFg}}; font-weight: 700">{{d.src}}</span></dd>
 </dl>
 
 <div>
@@ -261,14 +272,16 @@ a{color:#5b3cc4}a:hover{color:#44299e}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1400}}'>
+var PD={on:false};try{PD.on=localStorage.getItem('pulse-dark')==='1';}catch(e){}
+function pdToggle(e){PD.on=!PD.on;try{localStorage.setItem('pulse-dark',PD.on?'1':'0');}catch(x){}var r=(e.currentTarget||e.target).closest('.ov');if(r)r.classList.toggle('dark',PD.on);}
 var WES_SERVICES = ['فحص الملاريا','VDRL','مزرعة براز','فيروس التهاب الكبد C','أشعة الصدر','HIV','تعداد الدم الكامل (CBC)','تحليل البول','الفحص البدني والعضلي الهيكلي','فيروس التهاب الكبد B','لقاح البلدية','فصيلة الدم'];
 var BASIC = ['الفحص البدني','تعداد الدم الكامل (CBC)','تحليل البول','أشعة الصدر'];
 var LIVE = ['To test in Live'];
 var EX = 'فحص طبي';
 var DATA = [
-{id:'r13',ref:'#5592',name:'عمر حداد',phone:'+966 56 781 0042',idTail:'4471',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الخميس 12 نوفمبر',time:'13:00',rel:'بعد يومين',day:'up',base:1014,vat:152.1,status:'cancelled',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
+{id:'r13',osh:true,ref:'#5592',name:'عمر حداد',phone:'+966 56 781 0042',idTail:'4471',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الخميس 12 نوفمبر',time:'13:00',rel:'بعد يومين',day:'up',base:1014,vat:152.1,status:'cancelled',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
 {id:'r12',ref:'#5591',name:'سارة القحطاني',phone:'+966 54 220 9136',idTail:'9015',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الأربعاء 11 نوفمبر',time:'10:00',rel:'غداً',day:'up',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
-{id:'r11',ref:'#5590',name:'لينا صالح',phone:'+966 50 112 4478',idTail:'2208',company:'AL_Sura Company',branch:'Test 3',branchCode:'89540',date:'الثلاثاء 10 نوفمبر',time:'11:30',rel:'اليوم',day:'today',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
+{id:'r11',osh:true,ref:'#5590',name:'لينا صالح',phone:'+966 50 112 4478',idTail:'2208',company:'AL_Sura Company',branch:'Test 3',branchCode:'89540',date:'الثلاثاء 10 نوفمبر',time:'11:30',rel:'اليوم',day:'today',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
 {id:'r1',ref:'#5588',name:'Wesam jaber emp',phone:'+966 55 598 3070',idTail:'7310',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الثلاثاء 10 نوفمبر',time:'09:00',rel:'اليوم',day:'today',base:1000,vat:150,status:'checkin',pkg:true,includes:[EX,'دورة تدريبية','اختبار معتمد (أركان)','سداد'],services:WES_SERVICES,group:'إصدار فحص البلدية مع اللقاح',fit:null},
 {id:'r2',ref:'#5571',name:'test email',phone:'+966 55 896 5826',idTail:'3156',company:'',branch:'Test2',branchCode:'65412',date:'الأحد 8 نوفمبر',time:'11:59',rel:'قبل يومين',day:'past',base:20,vat:3,status:'completed',pkg:true,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
 {id:'r3',ref:'#5523',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'الأربعاء 16 سبتمبر',time:'10:00',rel:'قبل 8 أسابيع',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
@@ -293,8 +306,9 @@ var VIEWS = [
 {k:'all',l:'الكل'},{k:'today',l:'اليوم'},{k:'inside',l:'داخل المركز الآن'},{k:'upcoming',l:'القادمة'},{k:'delayed',l:'المتأخرة'},{k:'completed',l:'المكتملة'}
 ];
 function money(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function idOf(r){return '10'+r.idTail.split('').reverse().join('')+r.idTail;}
 class Component extends DCLogic {
-constructor(p){super(p);this.state={view:'all',sel:'r1',checked:{},over:{},showAll:false,toast:'',prev:null,fits:{}};}
+constructor(p){super(p);this.state={q:'',branch:'all',view:'all',sel:'r1',checked:{},over:{},showAll:false,toast:'',prev:null,fits:{}};}
 st(r){return this.state.over[r.id]||r.status;}
 inView(r,v){var s=this.st(r);
 if(v==='all')return true;
@@ -307,9 +321,13 @@ return true;}
 setStatus(ids,s,msg){var prev=Object.assign({},this.state.over);var over=Object.assign({},this.state.over);ids.forEach(function(i){over[i]=s;});this.setState({over:over,prev:prev,toast:msg,checked:{}});}
 renderVals(){
 var self=this;var S=this.state;
-var tabs=VIEWS.map(function(v){var c=DATA.filter(function(r){return self.inView(r,v.k);}).length;var a=S.view===v.k;
+var BD=DATA.filter(function(r){return S.branch==='all'||r.branch===S.branch;});
+var tabs=VIEWS.map(function(v){var c=BD.filter(function(r){return self.inView(r,v.k);}).length;var a=S.view===v.k;
 return {label:v.l,count:c,active:a?'true':'false',cls:a?'ht on':'ht',pick:function(){self.setState({view:v.k,checked:{}});}};});
-var vis=DATA.filter(function(r){return self.inView(r,S.view);});
+var inV=BD.filter(function(r){return self.inView(r,S.view);});
+var q=S.q.trim().toLowerCase().replace(/[٠-٩]/g,function(c){return String(c.charCodeAt(0)-1632);});
+var qNum=/^[0-9\s]+$/.test(q)?q.replace(/\s/g,''):'';
+var vis=inV.filter(function(r){if(!q)return true;if(qNum)return idOf(r).indexOf(qNum)>-1;return r.name.toLowerCase().indexOf(q)>-1;});
 function decorate(r){var s=self.st(r);var m=META[s];var fit=s==='completed'?(S.fits[r.id]||r.fit):null;
 var canIn=(s==='accepted'&&r.day!=='up')||s==='delayed';
 var nextLabel=canIn?'تسجيل الوصول':(s==='checkin'?'بدء الفحص':(s==='inprogress'?'تسجيل النتيجة':''));
@@ -319,7 +337,7 @@ hasFit:!!fit,fitLabel:fit==='fit'?'✓ لائق':(fit?'✕ غير لائق':''),
 hasNext:!!nextLabel,noNext:!nextLabel,nextLabel:nextLabel,canIn:canIn,isAccepted:s==='accepted',isCheckin:s==='checkin',isProg:s==='inprogress',isDone:s==='completed',isDelayed:s==='delayed',isClosed:s==='noshow'||s==='cancelled',
 fitIsFit:S.fits[r.id]==='fit',fitIsUnfit:S.fits[r.id]==='unfit',cantComplete:!S.fits[r.id],
 pickFit:function(){setFit('fit');},pickUnfit:function(){setFit('unfit');},
-reqTitle:r.pkg?'باقة الشركة':'فحص فقط',
+src:r.osh?'OSH':'الفحوصات',srcBg:r.osh?'var(--ov-cat-soft)':'var(--ov-sunken)',srcFg:r.osh?'var(--ov-cat)':'var(--ov-ink-2)',
 reqSub:r.includes.length>1?r.includes[0]+' + '+(r.includes.length-1)+' أخرى':'عدد الخدمات: '+r.services.length,
 companyShow:r.company||'غير مرتبط بشركة',
 totalStr:money(r.base+r.vat),baseStr:money(r.base),vatStr:money(r.vat),
@@ -352,8 +370,12 @@ if(st==='completed')act.push({t:'اكتمل · النتيجة: '+((S.fits[selRow
 d.activity=act;}
 var todayCount=DATA.filter(function(r){return r.day==='today';}).length;
 return {
-cls:this.props.dark?'ov dark':'ov',
-tabs:tabs,rows:rows,visibleCount:rows.length,isEmpty:rows.length===0,todayCount:todayCount,
+cls: (this.props.dark || PD.on) ? 'ov dark' : 'ov', toggleDark: pdToggle,
+tabs:tabs,rows:rows,visibleCount:rows.length,totalCount:inV.length,isEmpty:rows.length===0,todayCount:todayCount,
+branch:S.branch,brCls:S.branch==='all'?'':'on',setBranch:function(e){self.setState({branch:e.target.value,checked:{}});},
+q:S.q,searching:!!q,setQ:function(e){self.setState({q:e.target.value,checked:{}});},clearQ:function(){self.setState({q:''});},
+emptyTitle:q?'لا يوجد مراجع يطابق «'+S.q.trim()+'»':'لا توجد حجوزات في هذا العرض',
+emptySub:q?'تحقق من الكتابة أو أدخل رقم الهوية كاملاً. البحث يشمل العرض الحالي فقط.':'جرّب عرضاً آخر أو أزل الفلاتر.',
 hasChecked:checkedIds.length>0,checkedCount:checkedIds.length,
 checkedPendingText:pendingChecked.length?'منها '+pendingChecked.length+' يمكن تسجيل وصولها':'لا يوجد بينها ما يمكن تسجيل وصوله',
 allChecked:rows.length>0&&rows.every(function(r){return S.checked[r.id];}),
