@@ -41,11 +41,7 @@ export interface OrderListParams {
   reservationDate?: string;
   companyId?: number;
   companyBranchId?: number;
-  /**
-   * `ShortcutList` never received a branch filter in the working client;
-   * `Reservation/List` does take it (Missing Items §12.6). Setting it switches
-   * the list to `List` — see `orderListPath`.
-   */
+  /** Sent as `ServiceProviderBranchIds` (an array on the API). */
   serviceProviderBranchId?: number;
   companyPackageId?: number;
   status?: number;
@@ -84,7 +80,9 @@ export function orderListParams(
     phone: p.phone,
     ReservationDate: p.reservationDate,
     CompanyBranchId: p.companyBranchId,
-    serviceProviderBranchId: p.serviceProviderBranchId,
+    ServiceProviderBranchIds: p.serviceProviderBranchId
+      ? [p.serviceProviderBranchId]
+      : undefined,
     CompanyPackageId: p.companyPackageId,
     Status: p.status,
     from: p.from,
@@ -108,18 +106,17 @@ export const orderKeys = {
 };
 
 /**
- * Provider view: `ShortcutList` (§13.1); `List` when a branch is filtered,
- * because only `List` is known to honour `serviceProviderBranchId`.
+ * Provider view: `ShortcutList` (§13.1), also when a branch is filtered —
+ * it takes `ServiceProviderBranchIds` now, and only it honours
+ * `ExcludedStatus` (`Reservation/List` has no such filter).
  */
-export const orderListPath = (
-  p: Pick<OrderListParams, 'serviceProviderBranchId'>,
-) => (p.serviceProviderBranchId ? `${BASE}/List?` : `${BASE}/ShortcutList?`);
+export const ORDER_LIST_PATH = `${BASE}/ShortcutList?`;
 
 export const orderListQuery = (p: OrderListParams, groupId: UserType | null) =>
   queryOptions({
     queryKey: orderKeys.list(p, groupId),
     queryFn: ({ signal }) =>
-      apiGet<PagedResponse<Order>>(orderListPath(p), {
+      apiGet<PagedResponse<Order>>(ORDER_LIST_PATH, {
         signal,
         params: orderListParams(p, groupId),
       }),

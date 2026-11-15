@@ -11,7 +11,6 @@ export const BRANCH_PATHS = {
   create: `${BRANCH}/Create`,
   update: `${BRANCH}/Update`,
   delete: `${BRANCH}/Delete`,
-  multipleDelete: `${BRANCH}/MultipleDelete`,
 } as const;
 
 export const SLOT_PATHS = {

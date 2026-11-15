@@ -26,8 +26,3 @@ export function deleteById(
     params: { Id: id, [forceKey]: forceDelete ? true : undefined },
   });
 }
-
-/** `MultipleDelete`: a JSON id array as the DELETE body. */
-export function deleteMany(path: string, ids: readonly number[]) {
-  return apiDelete<DeleteResult>(path, { body: ids });
-}

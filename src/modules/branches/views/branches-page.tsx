@@ -10,7 +10,6 @@ import {
   namesById,
 } from '@/shared/api/lookups';
 import { useTags } from '@/shared/api/use-tags';
-import { HAS_DEPENDENTS } from '@/shared/api/delete';
 import { DataTable } from '@/shared/components/data-table';
 import { EnumFilterSelect } from '@/shared/components/enum-filter-select';
 import { ListError } from '@/shared/components/list-error';
@@ -121,13 +120,13 @@ export function BranchesPage() {
     });
     if (!ok) return;
     try {
-      const result = await removeMany.mutateAsync(ids);
-      if (result === HAS_DEPENDENTS || result === false) {
-        notify(t('bulk.failed'), 'error');
-        return;
+      const { deleted, blocked } = await removeMany.mutateAsync(ids);
+      if (deleted.length > 0) {
+        notify(t('bulk.deleted', { count: deleted.length }), 'success');
       }
-      notify(t('bulk.deleted', { count: ids.length }), 'success');
-      setSelected(new Set());
+      if (blocked.length > 0) notify(t('bulk.failed'), 'error');
+      // Keep only the refused branches selected.
+      setSelected(new Set(blocked));
     } catch {
       // Toasted by the global mutation error handler.
     }

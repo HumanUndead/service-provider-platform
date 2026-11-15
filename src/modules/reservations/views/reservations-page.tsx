@@ -172,7 +172,7 @@ export function ReservationsPage() {
       user.groupId,
     ),
   );
-  // The branch filter is sent to the API (`serviceProviderBranchId`), so
+  // The branch filter is sent to the API (`ServiceProviderBranchIds`), so
   // totals and pagination match what is shown.
   const rows = list.data?.data ?? [];
   const counts = useQuery(dashboardQuery({}, user)).data?.reservations;

@@ -166,10 +166,9 @@ export interface UserImportResult {
 
 /**
  * Bulk import of provider users from a spreadsheet (Missing Items §12.4).
- * The endpoint is misnamed `ServiceProviderUserExport`.
- * TODO(backend): the field is `ServiceProviderBranchId`, but the working
- * client fills it with the PROVIDER id on this screen. The portal does the
- * same until the backend confirms which id it expects.
+ * The endpoint is misnamed `ServiceProviderUserExport`; it takes the
+ * provider id as `ServiceProviderId` (the backend renamed the old
+ * `ServiceProviderBranchId` field).
  */
 export function useImportUsers(serviceProviderId: number) {
   const qc = useQueryClient();
@@ -177,7 +176,7 @@ export function useImportUsers(serviceProviderId: number) {
     mutationFn: (file: File) =>
       apiPost<UserImportResult>(
         `${BASE}/ServiceProviderUserExport`,
-        toFormData({ File: file, ServiceProviderBranchId: serviceProviderId }),
+        toFormData({ File: file, ServiceProviderId: serviceProviderId }),
       ).then((r) => ({
         successCount: r?.successCount ?? 0,
         errors: r?.errors ?? [],

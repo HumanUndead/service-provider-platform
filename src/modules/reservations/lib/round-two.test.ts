@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { tagParams } from '@/shared/api/lookups';
 import {
-  orderListPath,
+  orderListParams,
+  ORDER_LIST_PATH,
   updatePriceBody,
   updateResultBody,
 } from '@/modules/reservations/api/orders';
@@ -18,11 +19,14 @@ describe('Missing Items §12', () => {
     });
   });
 
-  it('a branch filter switches the order list to Reservation/List', () => {
-    expect(orderListPath({})).toBe('Reservation/Reservation/ShortcutList?');
-    expect(orderListPath({ serviceProviderBranchId: 12 })).toBe(
-      'Reservation/Reservation/List?',
+  it('a branch filter stays on ShortcutList as ServiceProviderBranchIds', () => {
+    expect(ORDER_LIST_PATH).toBe('Reservation/Reservation/ShortcutList?');
+    const params = orderListParams(
+      { pageNumber: 1, pageSize: 10, serviceProviderBranchId: 12 },
+      null,
     );
+    expect(params.ServiceProviderBranchIds).toEqual([12]);
+    expect(params).not.toHaveProperty('serviceProviderBranchId');
   });
 
   it('update price sends type 2 and resends the current fit (Blocked Items §2)', () => {
