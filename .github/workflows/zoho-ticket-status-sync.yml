@@ -36,5 +36,5 @@ jobs:
           PR_MERGED: ${{ github.event.pull_request.merged }}
           # DRY RUN until this project's status IDs are verified. Set to 'false'
           # to apply - see scripts/zoho/README.md ("Live mode").
-          DRY_RUN: 'true'
+          DRY_RUN: 'false'
         run: node scripts/zoho/sync-ticket-status.mjs
