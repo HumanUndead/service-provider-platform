@@ -16,7 +16,7 @@
 
 /*
  * PULSE theme — Service Provider Portal (docs/design/pulse.css).
- * Arabic-first RTL, warm neutrals, ONE violet accent, ONE dark "hero" per page.
+ * Arabic-first RTL, warm neutrals, ONE indigo accent, ONE dark "hero" per page.
  *
  * Token families (use these as Tailwind classes, never hex in TSX):
  *   grounds   bg-canvas · bg-surface · bg-raised · bg-sunken
@@ -69,6 +69,8 @@
   --color-brand-strong: var(--ov-accent-strong);
   --color-brand-soft: var(--ov-accent-soft);
   --color-on-brand: var(--ov-accent-ink);
+  --color-cat: var(--ov-cat);
+  --color-cat-soft: var(--ov-cat-soft);
   --color-up: var(--ov-up);
   --color-up-soft: var(--ov-up-soft);
   --color-down: var(--ov-down);
@@ -146,14 +148,14 @@
   --color-chart-3: var(--ov-warn);
   --color-chart-4: var(--ov-down);
   --color-chart-5: var(--ov-flat);
-  --color-sidebar: var(--ov-hero);
-  --color-sidebar-foreground: var(--ov-hero-ink-2);
-  --color-sidebar-primary: var(--ov-hero-raised);
-  --color-sidebar-primary-foreground: var(--ov-hero-accent);
-  --color-sidebar-accent: var(--ov-hero-raised);
-  --color-sidebar-accent-foreground: var(--ov-hero-ink);
-  --color-sidebar-border: var(--ov-hero-line);
-  --color-sidebar-ring: var(--ov-hero-accent);
+  --color-sidebar: var(--ov-surface);
+  --color-sidebar-foreground: var(--ov-ink-2);
+  --color-sidebar-primary: var(--ov-accent-soft);
+  --color-sidebar-primary-foreground: var(--ov-accent);
+  --color-sidebar-accent: var(--ov-sunken);
+  --color-sidebar-accent-foreground: var(--ov-ink);
+  --color-sidebar-border: var(--ov-line);
+  --color-sidebar-ring: var(--ov-accent);
 
   /* Elevation */
   --shadow-card: var(--sh-card);
@@ -201,10 +203,13 @@
   --ov-ink-3: #8a8892;
   --ov-line: #e4e0d8;
   --ov-line-strong: #cbc6bb;
-  --ov-accent: #5b3cc4;
-  --ov-accent-strong: #44299e;
-  --ov-accent-soft: #ece7fb;
+  --ov-accent: #4654c4;
+  --ov-accent-strong: #343fa0;
+  --ov-accent-soft: #e8ebfc;
   --ov-accent-ink: #ffffff;
+  /* "cat" = a category highlight (OSH source, company-specific scope). */
+  --ov-cat: var(--ov-accent);
+  --ov-cat-soft: var(--ov-accent-soft);
   --ov-up: #0b7f57;
   --ov-up-soft: #ddf2e8;
   --ov-down: #c8402a;
@@ -218,14 +223,14 @@
   --ov-hero-ink: #f6f4fb;
   --ov-hero-ink-2: #a9a5b7;
   --ov-hero-line: #2f2b3a;
-  --ov-hero-accent: #a28cff;
+  --ov-hero-accent: #8c9dff;
   --ov-hero-up: #4fdba4;
   --ov-hero-down: #ff8a70;
   --ov-hero-warn: #f2b84b;
   --sh-card: 0 1px 0 rgba(23, 22, 28, 0.04), 0 1px 3px rgba(23, 22, 28, 0.05);
   --sh-lift:
     0 22px 48px -12px rgba(23, 22, 28, 0.32), 0 4px 12px rgba(23, 22, 28, 0.1);
-  --sh-hero: 0 30px 60px -30px rgba(52, 30, 140, 0.55);
+  --sh-hero: 0 30px 60px -30px rgba(40, 50, 150, 0.55);
   --scrim: rgba(23, 22, 28, 0.48);
 }
 
@@ -239,10 +244,12 @@
   --ov-ink-3: #7f7c89;
   --ov-line: #26252e;
   --ov-line-strong: #3a3845;
-  --ov-accent: #a28cff;
-  --ov-accent-strong: #c3b5ff;
-  --ov-accent-soft: #241e3d;
+  --ov-accent: #8c9dff;
+  --ov-accent-strong: #b9c4ff;
+  --ov-accent-soft: #1e2240;
   --ov-accent-ink: #120f1f;
+  --ov-cat: var(--ov-accent);
+  --ov-cat-soft: var(--ov-accent-soft);
   --ov-up: #45d39c;
   --ov-up-soft: #10291f;
   --ov-down: #ff7d63;
@@ -322,7 +329,7 @@
   }
 }
 
-/* Hero bloom: violet glow in the top-end corner. */
+/* Hero bloom: accent glow in the top-end corner (top-left in RTL, top-right in LTR). */
 @utility hero-glow {
   background-image:
     radial-gradient(
@@ -335,6 +342,19 @@
       color-mix(in srgb, var(--ov-hero-accent) 10%, transparent),
       transparent 60%
     );
+  &:where([dir='ltr'] *) {
+    background-image:
+      radial-gradient(
+        120% 90% at 100% 0%,
+        color-mix(in srgb, var(--ov-hero-accent) 26%, transparent),
+        transparent 55%
+      ),
+      radial-gradient(
+        80% 60% at 0% 100%,
+        color-mix(in srgb, var(--ov-hero-accent) 10%, transparent),
+        transparent 60%
+      );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

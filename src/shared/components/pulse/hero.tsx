@@ -25,7 +25,7 @@ export function Hero({
   );
 }
 
-/** Small violet label above the hero title (pulse.css `.ey`). */
+/** Small accent label above the hero title (pulse.css `.ey`). */
 export function HeroEyebrow({
   icon,
   children,

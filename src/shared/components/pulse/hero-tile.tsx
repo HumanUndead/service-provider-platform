@@ -16,7 +16,7 @@ const VALUE_TONE = {
 /**
  * KPI / saved-view tile that lives inside a `Hero` (pulse.css `.ht`).
  * Pass `onClick` to make it a selectable view (the Reservations saved views);
- * `active` fills it violet. Without `onClick` it is a static stat.
+ * `active` fills it with the hero accent. Without `onClick` it is a static stat.
  */
 export function HeroTile({
   label,

@@ -2,10 +2,10 @@ import { cva } from 'class-variance-authority';
 
 /*
  * Pulse buttons (docs/design/pulse.css `.b`): pill, 40px tall, 13.5px/700.
- *   default     → `.bp` ink fill, violet on hover (the one primary per area)
+ *   default     → `.bp` ink fill, accent on hover (the one primary per area)
  *   outline     → `.bs` surface + line border
  *   ghost       → `.bg` quiet, sunken on hover
- *   brand       → solid violet (rare: a single emphasised call to action)
+ *   brand       → solid accent (rare: a single emphasised call to action)
  *   hero        → `.bh` for buttons placed on the dark hero / sidebar
  *   destructive → solid danger; destructiveOutline → danger outline
  */

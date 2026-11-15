@@ -39,7 +39,7 @@ export function FilterBar({
   );
 }
 
-/** One chip in a `FilterBar`; `active` = filter applied (violet soft). */
+/** One chip in a `FilterBar`; `active` = filter applied (accent soft). */
 export function FilterChip({
   active,
   onClick,

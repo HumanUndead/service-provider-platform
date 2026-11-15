@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Provider portal — Reservations</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./pulse.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#006ba6}a:hover{color:#1e2364}
+</style>
+</helmet>
+<div class="{{cls}}" dir="ltr" style="min-height: 100%; display: flex; flex-wrap: wrap">
+
+<aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 4h16v8h-8v8H4z"/></svg></span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">Mwafq</span><span style="font-size: 12px">Service provider portal</span></span>
+</div>
+<details class="bsw">
+<summary>
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)"><span class="l-all">All branches · 2</span><span class="l-a">Test2 branch</span><span class="l-b">Test 3 branch</span></span></span>
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</summary>
+<div class="bsw-m" role="radiogroup" aria-label="Branch">
+<label><input type="radio" name="bsw" value="all">All branches</label>
+<label><input type="radio" name="bsw" value="a">Test2</label>
+<label><input type="radio" name="bsw" value="b">Test 3</label>
+<a href="BranchesEn.dc.html">Manage branches</a>
+</div>
+</details>
+<nav aria-label="Main" style="display: flex; flex-direction: column; gap: 4px">
+<a class="nv" href="MainEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>Today</a>
+<a class="nv on" aria-current="page" href="ReservationsEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">Reservations</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">{{todayCount}}</span></a>
+<a class="nv" href="LedgersEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Ledgers</a>
+<a class="nv" href="TeamEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 15.5c1.7.7 2.7 2.2 3 4.5"/></svg>Team</a>
+<a class="nv" href="ServicesEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>Services</a>
+<a class="nv" href="BranchesEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Branches</a>
+<a class="nv" href="ProfileEn.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>Profile</a>
+</nav>
+<div style="flex: 1"></div>
+<a class="nv" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg>Help &amp; support</a>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 30px 0">
+<div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">Reservations</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">Examination bookings from companies · All branches</p></div>
+<button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">Search name, phone or ID</span><kbd class="num" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
+<button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>Check in</button>
+<div class="sg" role="group" aria-label="Language"><a href="Reservations.dc.html" aria-label="العربية">ع</a><span class="on num" aria-current="true">EN</span></div>
+<button type="button" class="b bs ic" aria-label="Switch to dark mode" onClick="{{toggleDark}}"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<button type="button" class="num" aria-label="Account menu, kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
+</header>
+
+<main style="width: 100%; max-width: 90rem; margin: 0 auto; padding: 24px 30px 40px; display: flex; flex-direction: column; gap: 20px">
+
+<section class="hero en" aria-labelledby="hero-t" style="padding: 28px 32px">
+<div class="glow" aria-hidden="true"></div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="ey"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>SAVED VIEWS</div>
+<h2 id="hero-t" class="hd" style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.15">Pick what you want to work on</h2>
+<p style="margin: 0; color: var(--ov-hero-ink-2)">Each tile is a ready-made view with its live count. Select a tile to filter the table.</p>
+</div>
+<button type="button" class="b bh sm"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Save current view</button>
+</div>
+<div role="group" aria-label="Saved views" style="margin-top: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<button type="button" class="{{t.cls}}" aria-pressed="{{t.active}}" onClick="{{t.pick}}"><span class="cap" style="font-weight: 700">{{t.label}}</span><span class="fig" style="font-size: 44px">{{t.count}}</span></button>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<div class="sg" role="group" aria-label="View">
+<a class="on" aria-current="page" href="ReservationsEn.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>Table</a>
+<a href="BoardEn.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="7" rx="1"/></svg>Board</a>
+<a href="CalendarEn.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Calendar</a>
+</div>
+<div class="fb" role="group" aria-label="Filters">
+<span class="lead"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters</span>
+<select class="{{brCls}}" aria-label="Filter by branch" value="{{branch}}" onChange="{{setBranch}}"><option value="all">Branch: All</option><option value="Test2">Branch: Test2</option><option value="Test 3">Branch: Test 3</option></select>
+<button type="button">Date: Any time</button>
+<button type="button">Source: All</button>
+<button type="button">Company: All</button>
+<button type="button">+ Filter</button>
+</div>
+<label style="flex: 1 1 220px; max-width: 320px; position: relative; display: block">
+<span class="vh">Search reservations</span>
+<input class="in" type="search" placeholder="Search by name or ID number" value="{{q}}" onChange="{{setQ}}" style="border-radius: 999px; padding-inline-start: 38px">
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; inset-inline-start: 13px; top: 11px; color: var(--ov-ink-2)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+</label>
+<div style="flex: 1 1 0"></div>
+<button type="button" class="b bs"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>Export</button>
+<button type="button" class="b bs ic" aria-label="Choose columns"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></button>
+</div>
+
+<sc-if value="{{hasChecked}}" hint-placeholder-val="{{ false }}">
+<div role="region" aria-label="Bulk actions" class="en" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 8px 8px 8px 20px; border-radius: 999px; background: var(--ov-ink); color: var(--ov-surface)">
+<span style="font-weight: 700"><span class="num">{{checkedCount}}</span> selected</span>
+<span style="font-size: 13px; opacity: .75">{{checkedPendingText}}</span>
+<div style="flex: 1 1 0"></div>
+<button type="button" class="b sm" onClick="{{checkinChecked}}" style="background: var(--ov-surface); color: var(--ov-ink)">Check in</button>
+<button type="button" class="b sm" style="background: transparent; color: var(--ov-surface); border-color: var(--ov-ink-3)">Export selected</button>
+<button type="button" class="b sm" onClick="{{clearChecked}}" style="background: transparent; color: var(--ov-surface)">Clear</button>
+</div>
+</sc-if>
+
+<div class="en2" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section class="pn" aria-label="Reservations list" style="flex: 999 1 560px; min-width: 0; overflow: hidden">
+<div style="overflow-x: auto">
+<table class="tb" style="min-width: 860px">
+<thead>
+<tr>
+<th scope="col" style="width: 44px; padding-inline-end: 0"><input type="checkbox" checked="{{allChecked}}" onChange="{{toggleAll}}" aria-label="Select all visible"></th>
+<th scope="col">Patient</th>
+<th scope="col">Source</th>
+<th scope="col">Date · Branch</th>
+<th scope="col" class="end">Amount</th>
+<th scope="col">Status</th>
+<th scope="col" class="end"><span class="vh">Action</span></th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr style="background: {{r.rowBg}}">
+<td style="padding-inline-end: 0"><input type="checkbox" checked="{{r.checked}}" onChange="{{r.toggle}}" aria-label="Select {{r.name}}" style="margin-top: 3px"></td>
+<td>
+<button type="button" onClick="{{r.open}}" style="padding: 0; border: 0; background: transparent; font: inherit; font-weight: 700; color: var(--ov-ink); text-align: start; cursor: pointer; text-decoration: underline; text-decoration-color: var(--ov-line-strong); text-underline-offset: 4px">{{r.name}}</button>
+<div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{r.ref}} · {{r.phone}}</div>
+<div style="color: var(--ov-ink-2); font-size: 12px">ID <span class="num">•••• •• {{r.idTail}}</span></div>
+</td>
+<td><span class="tg" style="background: {{r.srcBg}}; color: {{r.srcFg}}; font-weight: 700">{{r.src}}</span><div style="color: var(--ov-ink-2); font-size: 12px; margin-top: 4px">{{r.reqSub}}</div></td>
+<td style="white-space: nowrap"><div style="font-weight: 500">{{r.date}} · <span class="num">{{r.time}}</span></div><div style="color: var(--ov-ink-2); font-size: 12px">{{r.rel}} · {{r.branch}}</div></td>
+<td class="end" style="white-space: nowrap"><div style="font-weight: 700">SAR <span class="num">{{r.totalStr}}</span></div><div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{r.baseStr}} + {{r.vatStr}} VAT</div></td>
+<td><span class="{{r.sCls}}">{{r.sLabel}}</span>
+<sc-if value="{{r.hasFit}}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; font-size: 12px; font-weight: 700; color: {{r.fitFg}}">{{r.fitLabel}}</div></sc-if></td>
+<td class="end" style="white-space: nowrap">
+<sc-if value="{{r.hasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="b bp sm" onClick="{{r.next}}">{{r.nextLabel}}</button></sc-if>
+<sc-if value="{{r.noNext}}" hint-placeholder-val="{{ true }}"><button type="button" class="b bs sm" onClick="{{r.open}}">View</button></sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="margin: 20px; padding: 36px 24px; border: 1px dashed var(--ov-line-strong); border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; background: var(--ov-sunken); color: var(--ov-ink-2); display: grid; place-items: center"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+<div style="font-weight: 700; font-size: 15px">{{emptyTitle}}</div>
+<div style="color: var(--ov-ink-2)">{{emptySub}}</div>
+<sc-if value="{{searching}}" hint-placeholder-val="{{ false }}"><button type="button" class="b bs sm" onClick="{{clearQ}}">Clear search</button></sc-if>
+</div>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--ov-line); color: var(--ov-ink-2); font-size: 13px">
+<span>Showing <span class="num">{{visibleCount}}</span> of <span class="num">{{totalCount}}</span> · newest first</span>
+<span style="display: flex; align-items: center; gap: 8px">Rows per page <button type="button" class="b bs sm num" style="padding: 0 12px">25</button></span>
+</div>
+</section>
+
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+<aside class="pn" aria-label="Reservation details" style="flex: 1 1 360px; max-width: 420px; min-width: 0; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 20px 22px 16px; display: flex; gap: 10px; align-items: flex-start">
+<div style="flex: 1; min-width: 0">
+<div style="color: var(--ov-ink-2); font-size: 12px">Booking <span class="num">{{d.ref}}</span></div>
+<h2 style="margin: 2px 0 8px; font-size: 18px; font-weight: 800">{{d.name}}</h2>
+<span class="{{d.sCls}}">{{d.sLabel}}</span>
+</div>
+<button type="button" class="b bs ic sm" aria-label="Open full page" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8 8M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></button>
+<button type="button" class="b bs ic sm" onClick="{{closeDrawer}}" aria-label="Close details" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div>
+
+<div style="padding: 0 22px 18px; display: flex; flex-direction: column; gap: 18px">
+<dl style="margin: 0; padding-top: 16px; border-top: 1px solid var(--ov-line); display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 8px 12px; font-size: 13px">
+<dt style="color: var(--ov-ink-2)">Appointment</dt><dd style="margin: 0; font-weight: 500">{{d.date}}, <span class="num">{{d.time}}</span> <span style="color: var(--ov-ink-2)">({{d.rel}})</span></dd>
+<dt style="color: var(--ov-ink-2)">Branch</dt><dd style="margin: 0; font-weight: 500">{{d.branch}} · <span class="num">{{d.branchCode}}</span> <a href="#" style="font-weight: 700; margin-inline-start: 4px">Map</a></dd>
+<dt style="color: var(--ov-ink-2)">Phone</dt><dd class="num" style="margin: 0; font-weight: 500">{{d.phone}}</dd>
+<dt style="color: var(--ov-ink-2)">National ID</dt><dd style="margin: 0; font-weight: 500"><span class="num">•••• •• {{d.idTail}}</span> <button type="button" style="padding: 0; border: 0; background: transparent; font: inherit; color: var(--ov-accent); font-weight: 700; cursor: pointer; margin-inline-start: 4px">Show</button></dd>
+<dt style="color: var(--ov-ink-2)">Company</dt><dd style="margin: 0; font-weight: 500">{{d.companyShow}}</dd>
+<dt style="color: var(--ov-ink-2)">Source</dt><dd style="margin: 0"><span class="tg" style="background: {{d.srcBg}}; color: {{d.srcFg}}; font-weight: 700">{{d.src}}</span></dd>
+</dl>
+
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">Includes</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{d.includes}}" as="inc" hint-placeholder-count="2"><span class="tg">{{inc}}</span></sc-for></div>
+</div>
+
+<div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px">
+<h3 style="margin: 0; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">Services (<span class="num">{{d.serviceCount}}</span>)</h3>
+<span style="color: var(--ov-ink-2); font-size: 12px">{{d.group}}</span>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0 14px; border-radius: 16px; background: var(--ov-raised); border: 1px solid var(--ov-line)">
+<sc-for list="{{d.servicesShown}}" as="s" hint-placeholder-count="4"><li style="padding: 8px 0; border-bottom: 1px solid var(--ov-line); font-size: 13px">{{s}}</li></sc-for>
+</ul>
+<sc-if value="{{d.hasMore}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{toggleServices}}" style="margin-top: 6px; padding: 6px 0; border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--ov-accent); font-weight: 700; cursor: pointer">{{d.moreLabel}}</button></sc-if>
+</div>
+
+<div style="padding: 14px 16px; border-radius: 16px; background: var(--ov-sunken); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: 13px">
+<span style="color: var(--ov-ink-2)">Base price</span><span style="text-align: end">SAR <span class="num">{{d.baseStr}}</span></span>
+<span style="color: var(--ov-ink-2)">VAT <span class="num">15%</span></span><span style="text-align: end">SAR <span class="num">{{d.vatStr}}</span></span>
+<span style="font-weight: 700">Total</span><span style="text-align: end; font-weight: 800">SAR <span class="num" style="font-size: 18px">{{d.totalStr}}</span></span>
+</div>
+
+<sc-if value="{{d.isProg}}" hint-placeholder-val="{{ false }}">
+<fieldset style="margin: 0; padding: 14px; border: 1px solid var(--ov-line); border-radius: 16px">
+<legend style="padding: 0 6px; font-size: 13px; font-weight: 700">Fitness result</legend>
+<div style="display: flex; gap: 8px">
+<label style="flex: 1; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid var(--ov-line); border-radius: 12px; background: var(--ov-raised); cursor: pointer"><input type="radio" name="fit" checked="{{d.fitIsFit}}" onChange="{{d.pickFit}}"> Fit</label>
+<label style="flex: 1; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid var(--ov-line); border-radius: 12px; background: var(--ov-raised); cursor: pointer"><input type="radio" name="fit" checked="{{d.fitIsUnfit}}" onChange="{{d.pickUnfit}}"> Not fit</label>
+</div>
+<label style="position: relative; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border: 1px dashed var(--ov-line-strong); border-radius: 12px; color: var(--ov-ink-2); font-size: 13px; cursor: pointer"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>Attach report (PDF, up to 10 MB)<input type="file" class="vh"></label>
+</fieldset>
+</sc-if>
+
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">Activity</h3>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{d.activity}}" as="a" hint-placeholder-count="2">
+<li style="display: flex; gap: 10px; font-size: 13px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--ov-accent); flex: none"></span><span><span style="font-weight: 700">{{a.t}}</span><br><span style="color: var(--ov-ink-2)">{{a.m}}</span></span></li>
+</sc-for>
+</ol>
+</div>
+</div>
+
+<div style="margin-top: auto; padding: 14px 22px 18px; border-top: 1px solid var(--ov-line); display: flex; flex-wrap: wrap; gap: 8px">
+<sc-if value="{{d.canIn}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bp" onClick="{{d.next}}" style="flex: 1">Check in</button>
+</sc-if>
+<sc-if value="{{d.isCheckin}}" hint-placeholder-val="{{ true }}">
+<button type="button" class="b bp" onClick="{{d.next}}" style="flex: 1">Start exam</button>
+<button type="button" class="b bs">QR code</button>
+</sc-if>
+<sc-if value="{{d.isAccepted}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs">QR code</button>
+<button type="button" class="b bs" onClick="{{d.cancel}}" style="color: var(--ov-down)">Cancel booking…</button>
+</sc-if>
+<sc-if value="{{d.isProg}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bp" onClick="{{d.complete}}" disabled="{{d.cantComplete}}" style="flex: 1">Save result &amp; complete</button>
+<button type="button" class="b bs ic" aria-label="More actions"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01" style="stroke-width: 3.6"/></svg></button>
+</sc-if>
+<sc-if value="{{d.isDone}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs" style="flex: 1">Download report</button>
+<button type="button" class="b bs">Attachments</button>
+</sc-if>
+<sc-if value="{{d.isDelayed}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs" onClick="{{d.noshow}}">Close as no-show</button>
+</sc-if>
+<sc-if value="{{d.isClosed}}" hint-placeholder-val="{{ false }}">
+<span style="color: var(--ov-ink-2); font-size: 13px">This booking is closed. No actions are available.</span>
+</sc-if>
+</div>
+</aside>
+</sc-if>
+</div>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="en" style="align-self: center; display: flex; align-items: center; gap: 14px; padding: 8px 8px 8px 20px; border-radius: 999px; background: var(--ov-raised); border: 1px solid var(--ov-line); box-shadow: var(--sh-lift)">
+<span>{{toast}}</span>
+<button type="button" class="b bp sm" onClick="{{undo}}">Undo</button>
+</div>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1400}}'>
+var PD={on:false};try{PD.on=localStorage.getItem('pulse-dark')==='1';}catch(e){}
+function pdToggle(e){PD.on=!PD.on;try{localStorage.setItem('pulse-dark',PD.on?'1':'0');}catch(x){}var r=(e.currentTarget||e.target).closest('.ov');if(r)r.classList.toggle('dark',PD.on);}
+var WES_SERVICES = ['Malaria test','VDRL','Stool culture','Hepatitis C virus','Chest X-ray','HIV','Complete blood count (CBC)','Urine analysis','Physical & musculoskeletal examination','Hepatitis B virus','Baladiya vaccine','Blood group'];
+var BASIC = ['Physical examination','Complete blood count (CBC)','Urine analysis','Chest X-ray'];
+var LIVE = ['To test in Live'];
+var EX = 'Examination';
+var DATA = [
+{id:'r13',osh:true,ref:'#5592',name:'Omar Haddad',phone:'+966 56 781 0042',idTail:'4471',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'Thu 12 Nov',time:'13:00',rel:'In 2 days',day:'up',base:1014,vat:152.1,status:'cancelled',pkg:true,includes:[EX],services:BASIC,group:'Baladia examination',fit:null},
+{id:'r12',ref:'#5591',name:'Sara Al-Qahtani',phone:'+966 54 220 9136',idTail:'9015',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'Wed 11 Nov',time:'10:00',rel:'Tomorrow',day:'up',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'Baladia examination',fit:null},
+{id:'r11',osh:true,ref:'#5590',name:'Lina Saleh',phone:'+966 50 112 4478',idTail:'2208',company:'AL_Sura Company',branch:'Test 3',branchCode:'89540',date:'Tue 10 Nov',time:'11:30',rel:'Today',day:'today',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'Baladia examination',fit:null},
+{id:'r1',ref:'#5588',name:'Wesam jaber emp',phone:'+966 55 598 3070',idTail:'7310',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'Tue 10 Nov',time:'09:00',rel:'Today',day:'today',base:1000,vat:150,status:'checkin',pkg:true,includes:[EX,'Course','Certified exam (Arkan)','Sadad'],services:WES_SERVICES,group:'Baladia issuance with vaccine',fit:null},
+{id:'r2',ref:'#5571',name:'test email',phone:'+966 55 896 5826',idTail:'3156',company:'',branch:'Test2',branchCode:'65412',date:'Sun 8 Nov',time:'11:59',rel:'2 days ago',day:'past',base:20,vat:3,status:'completed',pkg:true,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r3',ref:'#5523',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'Wed 16 Sep',time:'10:00',rel:'8 weeks ago',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r5',ref:'#4508',name:'To test sm',phone:'+966 59 975 9494',idTail:'1182',company:'',branch:'Test 3',branchCode:'89540',date:'Mon 27 Jul',time:'09:30',rel:'15 weeks ago',day:'past',base:1014,vat:152.1,status:'completed',pkg:false,includes:[EX],services:BASIC,group:'Baladia examination',fit:'unfit'},
+{id:'r4',ref:'#4507',name:'To test sm',phone:'+966 59 975 9494',idTail:'1182',company:'',branch:'Test 3',branchCode:'89540',date:'Sun 26 Jul',time:'09:30',rel:'15 weeks ago',day:'past',base:1014,vat:152.1,status:'completed',pkg:false,includes:[EX],services:BASIC,group:'Baladia examination',fit:'fit'},
+{id:'r9',ref:'#4161',name:'Karam Al-Omari',phone:'+966 50 800 8334',idTail:'5093',company:'',branch:'Test2',branchCode:'65412',date:'Mon 20 Jul',time:'12:00',rel:'16 weeks ago',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r6',ref:'#4157',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'Thu 16 Jul',time:'10:00',rel:'17 weeks ago',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r7',ref:'#4159',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'Wed 15 Jul',time:'10:00',rel:'17 weeks ago',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r8',ref:'#4160',name:'ahmad muslah',phone:'+962 77 898 7888',idTail:'8804',company:'',branch:'Test2',branchCode:'65412',date:'Wed 15 Jul',time:'11:00',rel:'17 weeks ago',day:'past',base:20,vat:3,status:'delayed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:null},
+{id:'r10',ref:'#4162',name:'عبدالحميد العجمي',phone:'+966 59 985 5252',idTail:'2741',company:'',branch:'Test2',branchCode:'65412',date:'Wed 15 Jul',time:'12:30',rel:'17 weeks ago',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'}
+];
+var META = {
+accepted:{l:'Accepted',c:'pl p-line'},
+checkin:{l:'Check-in',c:'pl p-acc'},
+inprogress:{l:'In progress',c:'pl p-solid'},
+delayed:{l:'Delayed',c:'pl p-warn'},
+noshow:{l:'No show',c:'pl p-down'},
+cancelled:{l:'Cancelled',c:'pl p-flat'},
+completed:{l:'Complete',c:'pl p-up'}
+};
+var VIEWS = [
+{k:'all',l:'All'},{k:'today',l:'Today'},{k:'inside',l:'In the centre now'},{k:'upcoming',l:'Upcoming'},{k:'delayed',l:'Delayed'},{k:'completed',l:'Complete'}
+];
+function money(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function idOf(r){return '10'+r.idTail.split('').reverse().join('')+r.idTail;}
+class Component extends DCLogic {
+constructor(p){super(p);this.state={q:'',branch:'all',view:'all',sel:'r1',checked:{},over:{},showAll:false,toast:'',prev:null,fits:{}};}
+st(r){return this.state.over[r.id]||r.status;}
+inView(r,v){var s=this.st(r);
+if(v==='all')return true;
+if(v==='inside')return s==='checkin'||s==='inprogress';
+if(v==='today')return r.day==='today';
+if(v==='upcoming')return r.day==='up'&&s==='accepted';
+if(v==='delayed')return s==='delayed';
+if(v==='completed')return s==='completed';
+return true;}
+setStatus(ids,s,msg){var prev=Object.assign({},this.state.over);var over=Object.assign({},this.state.over);ids.forEach(function(i){over[i]=s;});this.setState({over:over,prev:prev,toast:msg,checked:{}});}
+renderVals(){
+var self=this;var S=this.state;
+var BD=DATA.filter(function(r){return S.branch==='all'||r.branch===S.branch;});
+var tabs=VIEWS.map(function(v){var c=BD.filter(function(r){return self.inView(r,v.k);}).length;var a=S.view===v.k;
+return {label:v.l,count:c,active:a?'true':'false',cls:a?'ht on':'ht',pick:function(){self.setState({view:v.k,checked:{}});}};});
+var inV=BD.filter(function(r){return self.inView(r,S.view);});
+var q=S.q.trim().toLowerCase().replace(/[٠-٩]/g,function(c){return String(c.charCodeAt(0)-1632);});
+var qNum=/^[0-9\s]+$/.test(q)?q.replace(/\s/g,''):'';
+var vis=inV.filter(function(r){if(!q)return true;if(qNum)return idOf(r).indexOf(qNum)>-1;return r.name.toLowerCase().indexOf(q)>-1;});
+function decorate(r){var s=self.st(r);var m=META[s];var fit=s==='completed'?(S.fits[r.id]||r.fit):null;
+var canIn=(s==='accepted'&&r.day!=='up')||s==='delayed';
+var nextLabel=canIn?'Check in':(s==='checkin'?'Start exam':(s==='inprogress'?'Record result':''));
+function setFit(v){var f=Object.assign({},S.fits);f[r.id]=v;self.setState({fits:f});}
+return Object.assign({},r,{sLabel:m.l,sCls:m.c,status:s,
+hasFit:!!fit,fitLabel:fit==='fit'?'✓ Fit':(fit?'✕ Not fit':''),fitFg:fit==='fit'?'var(--ov-up)':'var(--ov-down)',
+hasNext:!!nextLabel,noNext:!nextLabel,nextLabel:nextLabel,canIn:canIn,isAccepted:s==='accepted',isCheckin:s==='checkin',isProg:s==='inprogress',isDone:s==='completed',isDelayed:s==='delayed',isClosed:s==='noshow'||s==='cancelled',
+fitIsFit:S.fits[r.id]==='fit',fitIsUnfit:S.fits[r.id]==='unfit',cantComplete:!S.fits[r.id],
+pickFit:function(){setFit('fit');},pickUnfit:function(){setFit('unfit');},
+src:r.osh?'OSH':'Examination',srcBg:r.osh?'var(--ov-cat-soft)':'var(--ov-sunken)',srcFg:r.osh?'var(--ov-cat)':'var(--ov-ink-2)',
+reqSub:r.includes.length>1?r.includes[0]+' + '+(r.includes.length-1)+' more':'Services: '+r.services.length,
+companyShow:r.company||'Not linked to a company',
+totalStr:money(r.base+r.vat),baseStr:money(r.base),vatStr:money(r.vat),
+checked:!!S.checked[r.id],rowBg:S.sel===r.id?'var(--ov-accent-soft)':'transparent',
+toggle:function(){var c=Object.assign({},S.checked);if(c[r.id])delete c[r.id];else c[r.id]=true;self.setState({checked:c});},
+open:function(){self.setState({sel:r.id,showAll:false});},
+next:function(){
+if(canIn)self.setStatus([r.id],'checkin',r.name+' checked in.');
+else if(s==='checkin')self.setStatus([r.id],'inprogress','Exam started for '+r.name+'.');
+else self.setState({sel:r.id,showAll:false});},
+complete:function(){if(!S.fits[r.id])return;self.setStatus([r.id],'completed',r.name+' completed and result recorded.');},
+noshow:function(){self.setStatus([r.id],'noshow',r.name+' closed as no-show.');},
+cancel:function(){self.setStatus([r.id],'cancelled','Booking for '+r.name+' cancelled.');}
+});}
+var rows=vis.map(decorate);
+var checkedIds=Object.keys(S.checked);
+var pendingChecked=checkedIds.filter(function(i){var r=DATA.find(function(x){return x.id===i;});if(!r)return false;var s=self.st(r);return (s==='accepted'&&r.day!=='up')||s==='delayed';});
+var selRow=DATA.find(function(r){return r.id===S.sel;});
+var d=null;
+if(selRow){d=decorate(selRow);
+var list=d.services;d.serviceCount=list.length;d.servicesShown=S.showAll?list:list.slice(0,5);d.hasMore=list.length>5;d.moreLabel=S.showAll?'Show fewer':'Show all '+list.length+' services';
+var st=d.status;
+var act=[{t:'Booking created as Accepted',m:(selRow.company||'Direct booking')+' · appointment '+selRow.date}];
+if(st==='delayed'||st==='noshow')act.push({t:'Marked delayed',m:'No check-in recorded on '+selRow.date});
+if(st==='noshow')act.push({t:'Closed as no-show',m:'by kordy test'});
+if(st==='cancelled')act.push({t:'Booking cancelled',m:'Before the appointment'});
+if(st==='checkin'||st==='inprogress'||st==='completed')act.push({t:'Checked in',m:'by kordy test'});
+if(st==='inprogress'||st==='completed')act.push({t:'Exam started',m:'by kordy test'});
+if(st==='completed')act.push({t:'Complete · result: '+((S.fits[selRow.id]||selRow.fit)==='fit'?'Fit':'Not fit'),m:'by kordy test'});
+d.activity=act;}
+var todayCount=DATA.filter(function(r){return r.day==='today';}).length;
+return {
+cls: (this.props.dark || PD.on) ? 'ov dark' : 'ov', toggleDark: pdToggle,
+tabs:tabs,rows:rows,visibleCount:rows.length,totalCount:inV.length,isEmpty:rows.length===0,todayCount:todayCount,
+branch:S.branch,brCls:S.branch==='all'?'':'on',setBranch:function(e){self.setState({branch:e.target.value,checked:{}});},
+q:S.q,searching:!!q,setQ:function(e){self.setState({q:e.target.value,checked:{}});},clearQ:function(){self.setState({q:''});},
+emptyTitle:q?'No one matches "'+S.q.trim()+'"':'No reservations in this view',
+emptySub:q?'Check the spelling or type the full ID number. Search covers the current view only.':'Try another view or clear the filters.',
+hasChecked:checkedIds.length>0,checkedCount:checkedIds.length,
+checkedPendingText:pendingChecked.length?pendingChecked.length+' can be checked in':'none can be checked in',
+allChecked:rows.length>0&&rows.every(function(r){return S.checked[r.id];}),
+toggleAll:function(){var all=rows.length>0&&rows.every(function(r){return S.checked[r.id];});var c={};if(!all)rows.forEach(function(r){c[r.id]=true;});self.setState({checked:c});},
+clearChecked:function(){self.setState({checked:{}});},
+checkinChecked:function(){if(!pendingChecked.length)return;self.setStatus(pendingChecked,'checkin','Checked in '+pendingChecked.length+' booking'+(pendingChecked.length>1?'s':'')+'.');},
+hasSel:!!d,d:d||{includes:[],servicesShown:[],activity:[]},
+closeDrawer:function(){self.setState({sel:null});},
+toggleServices:function(){self.setState({showAll:!S.showAll});},
+hasToast:!!S.toast,toast:S.toast,
+undo:function(){self.setState({over:S.prev||{},toast:'',prev:null});}
+};
+}
+}
+</script>
+</body>
+</html>

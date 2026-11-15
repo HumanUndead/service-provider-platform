@@ -1,4 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table';
+import { RequestChannel } from '@/shared/api/enums';
 import type { TFunction } from 'i18next';
 import { ReservationStatusBadge } from '@/shared/components/reservation-status-badge';
 import { Tag } from '@/shared/components/pulse';
@@ -9,9 +10,11 @@ import {
 } from '@/shared/lib/format';
 import { statusKeyOf } from '@/shared/lib/reservation-status';
 import type { Lang } from '@/shared/types/lang';
+import { cn } from '@/shared/lib/utils';
 import type { Order } from '@/modules/reservations/api/types';
 import {
   CHANNEL_KEY,
+  maskIdentity,
   orderChannel,
 } from '@/modules/reservations/lib/order-labels';
 import { orderServiceNames } from '@/modules/reservations/lib/order-rules';
@@ -39,9 +42,17 @@ export function orderColumns(
       cell: ({ row }) => (
         <div className='flex flex-col'>
           <span className='text-ink font-bold'>{row.original.ownerName}</span>
-          <span dir='ltr' className='num text-ink-3 text-start text-xs'>
+          <span dir='ltr' className='num text-ink-2 text-start text-xs'>
             {row.original.ownerPhone}
           </span>
+          {row.original.identityNumber && (
+            <span className='text-ink-2 text-xs'>
+              {t('columns.idTail')}{' '}
+              <span dir='ltr' className='num'>
+                {maskIdentity(row.original.identityNumber)}
+              </span>
+            </span>
+          )}
         </div>
       ),
     },
@@ -82,7 +93,17 @@ export function orderColumns(
       header: t('columns.channel'),
       cell: ({ row }) => {
         const channel = orderChannel(row.original);
-        return channel ? t(`channel.${CHANNEL_KEY[channel]}`) : '—';
+        if (!channel) return '—';
+        return (
+          <Tag
+            className={cn(
+              'font-bold',
+              channel === RequestChannel.Osh && 'bg-cat-soft text-cat',
+            )}
+          >
+            {t(`channel.${CHANNEL_KEY[channel]}`)}
+          </Tag>
+        );
       },
     },
     {

@@ -33,6 +33,7 @@ import { OrderBoard } from '@/modules/reservations/_components/order-board';
 import { OrderCalendar } from '@/modules/reservations/_components/order-calendar';
 import { orderColumns } from '@/modules/reservations/_components/order-columns';
 import { OrderDrawer } from '@/modules/reservations/_components/order-drawer';
+import { ReservationsEmpty } from '@/modules/reservations/_components/reservations-empty';
 import {
   BranchFilter,
   ChannelFilter,
@@ -321,12 +322,19 @@ export function ReservationsPage() {
       ) : (
         <>
           <Panel className='animate-enter overflow-hidden'>
-            <DataTable
-              columns={columns}
-              data={rows}
-              loading={list.isPending}
-              onRowClick={(o) => openDrawer(o.id)}
-            />
+            {!list.isPending && rows.length === 0 ? (
+              <ReservationsEmpty
+                search={params.get('q')}
+                onClearSearch={() => update({ q: null })}
+              />
+            ) : (
+              <DataTable
+                columns={columns}
+                data={rows}
+                loading={list.isPending}
+                onRowClick={(o) => openDrawer(o.id)}
+              />
+            )}
           </Panel>
           <ListPagination
             pageNumber={page}

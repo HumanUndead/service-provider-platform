@@ -10,7 +10,7 @@ import { SidebarContent } from '@/modules/shell/_components/sidebar';
 import { Topbar } from '@/modules/shell/_components/topbar';
 
 /**
- * App shell: Pulse sidebar (hero palette; a drawer under 1024px), top bar
+ * App shell: Pulse sidebar (light surface panel; a drawer under 1024px), top bar
  * with the screen's title, content capped at 90rem.
  */
 export function AppLayout() {
